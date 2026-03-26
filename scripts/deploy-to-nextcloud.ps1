@@ -16,6 +16,7 @@ $ExcludeDirs = @(
   'drafts',
   'wip',
   'archive',
+  '_archive',
   'scripts',
   '.claude',
   '.codex'
@@ -84,3 +85,4 @@ if ($code -le 7) {
 
 Write-Error "Deploy failed (robocopy exit code $code)."
 exit $code
+
