@@ -1,250 +1,960 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Castle Meetup at Burg Ehrenfels</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            background-color: #f4f4f4;
-        }
-        h1, h2 {
-            color: #333;
-        }
-        a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Castle Meetup at Burg Ehrenfels</title>
+  <style>
+    :root {
+      --stone-1: #f2ece2;
+      --stone-2: #e3d7c6;
+      --stone-3: #c8b8a0;
+      --ink-1: #2f2a26;
+      --ink-2: #4a4038;
+      --accent: #8b5e3c;
+      --accent-2: #caa26a;
+      --emerald: #2f5c4a;
+      --shadow: rgba(26, 22, 18, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Georgia", "Times New Roman", serif;
+      color: var(--ink-1);
+      background: var(--stone-1);
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.6), transparent 50%),
+        radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.4), transparent 55%),
+        linear-gradient(120deg, rgba(200, 184, 160, 0.25), rgba(255, 255, 255, 0));
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    .hero {
+      position: relative;
+      padding: 48px 24px 40px;
+      background:
+        linear-gradient(135deg, rgba(47, 92, 74, 0.9), rgba(64, 50, 40, 0.95)),
+        linear-gradient(110deg, rgba(202, 162, 106, 0.55), rgba(47, 92, 74, 0.4));
+      color: #fef9f2;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("P1100037.jpg");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.2;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      z-index: 1;
+    }
+    .lang-switch {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 150px;
+      padding: 6px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+      margin-left: auto;
+      background: linear-gradient(90deg, #f8f3ea 0 50%, #0b7b61 50% 100%);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    .lang-switch button {
+      border: none;
+      background: transparent;
+      padding: 6px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lang-switch button:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.8);
+      outline-offset: 2px;
+    }
+
+    .lang-switch .flag {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;\n      font-weight: 700;\n      font-family: "Arial", sans-serif;\n      letter-spacing: 0.08em;\n      color: #1e1a16;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12), 0 6px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .lang-switch button[aria-pressed="true"] .flag {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8), 0 8px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin: 0 0 8px;
+      letter-spacing: 0.03em;
+    }
+
+    .hero p {
+      margin: 8px 0;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .hero .subline {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.12);
+      font-size: 0.95rem;
+      margin-top: 10px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 16px;
+      border-radius: 16px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .card strong {
+      display: block;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .countdown {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: -30px auto 60px;
+      padding: 0 24px 60px;
+    }
+
+    .panel {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 16px 40px var(--shadow);
+      padding: 32px;
+      border: 1px solid rgba(47, 42, 38, 0.08);
+    }
+
+    .section {
+      margin-bottom: 28px;
+    }
+
+    h2 {
+      color: var(--ink-2);
+      margin-top: 0;
+    }
+
+    h3 {
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    a {
+      color: var(--emerald);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--stone-3), transparent);
+      margin: 32px 0;
+    }
+
+    .note {
+      background: var(--stone-1);
+      border-left: 4px solid var(--accent);
+      padding: 12px 16px;
+      border-radius: 12px;
+    }
+
+    .booking-list {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .gallery {
+      margin-bottom: 32px;
+    }
+
+    .gallery-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .gallery-header p {
+      margin: 0;
+      color: var(--ink-2);
+      font-size: 0.95rem;
+    }
+
+    .carousel {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+      background: #111;
+    }
+
+    .carousel-frame {
+      aspect-ratio: 16 / 9;
+      min-height: 260px;
+    }
+
+    .carousel-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.45);
+      color: #fff;
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.6rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .carousel-btn:hover {
+      background: rgba(0, 0, 0, 0.65);
+      transform: translateY(-50%) scale(1.03);
+    }
+
+    .carousel-btn.prev { left: 14px; }
+    .carousel-btn.next { right: 14px; }
+
+    .carousel-caption {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: var(--ink-2);
+    }
+
+    .carousel-thumbs {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+    }
+
+    .carousel-thumbs button {
+      border: none;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .carousel-thumbs img {
+      width: 84px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 10px;
+      opacity: 0.7;
+      border: 2px solid transparent;
+      transition: opacity 0.2s ease, border 0.2s ease, transform 0.2s ease;
+    }
+
+    .carousel-thumbs button.active img {
+      opacity: 1;
+      border-color: var(--accent-2);
+      transform: translateY(-2px);
+    }
+
+    .lang-inline {
+      display: none;
+    }
+
+    .lang-inline.active {
+      display: inline;
+    }
+    .lang {
+      display: none;
+    }
+
+    .lang.active {
+      display: block;
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        padding: 36px 18px 30px;
+      }
+
+      main {
+        margin-top: -20px;
+        padding: 0 16px 40px;
+      }
+
+      .panel {
+        padding: 24px;
+      }
+
+      .lang-switch {
+        margin-left: 0;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="lang-switch" role="group" aria-label="Language selector">
+          <button type="button" data-lang-toggle="de" aria-pressed="false" title="Deutsch">
+            <span class="flag" aria-hidden="true">CH</span>
+            <span class="sr-only">Deutsch</span>
+          </button>
+          <button type="button" data-lang-toggle="en" aria-pressed="true" title="English">
+            <span class="flag" aria-hidden="true">GB</span>
+            <span class="sr-only">English</span>
+          </button>
+        </div>
 
-<div class="container">
-    <h1>Castle Meetup at Burg Ehrenfels</h1>
-    <p><strong>Dates:</strong> Sunday, July 30th (<span id="day-counter"></span> days to go) – Saturday, August 5th, 12h 2028<br>
-    <strong>Location:</strong> <a href="https://maps.app.goo.gl/of7Mqwn143Czr3W36" target="_blank">Burg Ehrenfels, Graubünden, Switzerland</a></p>
-    <p><strong>Castle booked for future meetups:</strong></p>
-    <ul>
-      <li>30.7. - 5.8. 2028</li>
-      <li>29.7. - 4.8. 2029 (my 60th birthday)</li>
-      <li>27.7. - 2.8. 2031</li>
-    </ul>
-    <p>Note: I tried to swap 2028 with 2027, but that was not possible because the castle is already rented out in 2027.</p>
+        <h1>Castle Meetup at Burg Ehrenfels</h1>
+        <p class="subline">Graubünden, Switzerland · A week of friends, hikes, feasts, and castle vibes.</p>
+        <div class="pill">July 30 – August 5, 2028</div>
+
+        <div class="info-grid">
+          <div class="card">
+            <strong>Countdown</strong>
+            <div class="countdown"><span id="day-counter">...</span> days to go</div>
+          </div>
+          <div class="card">
+            <strong>Location</strong>
+            <div><a href="https://maps.app.goo.gl/of7Mqwn143Czr3W36" target="_blank">Burg Ehrenfels</a></div>
+            <div>Sils im Domleschg, Graubünden</div>
+          </div>
+          <div class="card">
+            <strong>Booked Dates</strong>
+            <ul class="booking-list">
+              <li>30.7. – 5.8. 2028</li>
+              <li>29.7. – 4.8. 2029 (my 60th birthday)</li>
+              <li>27.7. – 2.8. 2031</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="panel">
+        
+        <div class="gallery">
+          <div class="gallery-header">
+            <h2>
+              <span class="lang-inline" data-lang="en">Gallery</span>
+              <span class="lang-inline" data-lang="de">Galerie</span>
+            </h2>
+            <p>
+              <span class="lang-inline" data-lang="en">Impressions from Ehrenfels and the last meetup.</span>
+              <span class="lang-inline" data-lang="de">Eindrücke von Ehrenfels und dem letzten Treffen.</span>
+            </p>
+          </div>
+          <div class="carousel" aria-roledescription="carousel">
+            <button class="carousel-btn prev" type="button" aria-label="Previous image">‹</button>
+            <div class="carousel-frame">
+              <img id="carousel-image" src="" alt="">
+            </div>
+            <button class="carousel-btn next" type="button" aria-label="Next image">›</button>
+          </div>
+          <div class="carousel-caption" id="carousel-caption"></div>
+          <div class="carousel-thumbs" id="carousel-thumbs" aria-label="Gallery thumbnails"></div>
+        </div><div class="lang active" data-lang="en">
+          <div class="section">
+            <h2>General Information</h2>
+            <p>We will use this page for general information about the castle meetup. Details are continuously added. If anybody is missing something or has suggestions (for excursions and other pastimes) – especially if you volunteer to take responsibility for organizing something – just put it in the calendar.</p>
+            <p class="note">Note: I tried to swap 2028 with 2027, but that was not possible because the castle is already rented out in 2027.</p>
+          </div>
+
+          <div class="section">
+            <h2>The Castle</h2>
+            <p>Here you can find some more information on the castle:</p>
+            <ul>
+              <li><a href="https://www.youthhostel.ch/de/hostels/sils-im-domleschg/" target="_blank">Homepage</a> (German)</li>
+              <li><a href="https://maps.app.goo.gl/Vj98qw8bzaSpQbGTA" target="_blank">Maps</a></li>
+              <li><a href="https://www.google.ch/maps/uv?hl=en&pb=!1s0x4784eb0f557c2c5d%3A0x1e3899521af899b2!3m1!7e115!4shttps%3A%2F%2Fen.wikipedia.org%2Fwiki%2FEhrenfels_Castle_%28Grisons%29!5sburg%20ehrenfels%20sils%20im%20domleschg%20-%20Google%20Search!15sCgIgAQ&imagekey=!1e10!2sAF1QipPus7UhadGhDanl9Qmv6tALnarpX0MaVd9LInh6&sa=X&ved=2ahUKEwias4CRj5rfAhWLjiwKHcT4AVUQoiowD3oECAYQBg" target="_blank">Pictures</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Ehrenfels_Castle_%28Grisons%29" target="_blank">Wikipedia</a></li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h2>Agenda</h2>
+            <p>Not a lot is planned yet. What we know for sure is that we will be celebrating August 1st together. Like the last three times in 2019, 2022, and 2025 we will hike together, bike, cook, play, laugh, relax and of course party hard.</p>
+            <p>Inspiration:</p>
+            <ul>
+              <li>August 1st: Swiss national day, raclette and cheese fondue, watching fireworks</li>
+              <li>At least one day we will do a longer hike</li>
+              <li>Possibly also a bike tour - we will need to rent bikes which have to be reserved in advance (2025 prices: CHF 80 per bike and day) - somebody needs to take the lead on this</li>
+              <li>Playing board and card games, ping pong, foosball tournament, backgammon, ukulele and bridge classes, etc. - this is all stuff we have done in earlier years</li>
+              <li>Preparing meals together. Everybody is welcome to take the lead on this for an evening - maybe you have a favorite meal you would want to prepare for the rest of us. Of course you will be provided with minions helping you peel potatoes and stir the stew</li>
+              <li>Maybe a night walk</li>
+              <li>Maybe some Olympics with all kinds of different competitions</li>
+              <li>Terraforming Mars, Space Alert, Werewolf, Secret H.?</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h2>Getting there and parking</h2>
+            <p>You can unload your car near the castle (or even right in front of the castle if you have a small 4x4), but you cannot park there. The <a href="https://maps.app.goo.gl/uwQGpBzpU1h92rFY6" target="_blank">free parking lot</a> is about a 10 minute walk away.</p>
+            <p>If you arrive by public transport, take the train to Thusis and:</p>
+            <ul>
+              <li>catch a taxi from the train station</li>
+              <li>get somebody who already is at the castle to pick you up</li>
+              <li>walk (but it is a 45 minute walk up the hill)</li>
+              <li>take the bus B513 or B521 to Sils im Domleschg (5 minutes) and walk from there (15 minutes)</li>
+            </ul>
+            <p>Check train and bus connections here at <a href="https://sbb.ch/en" target="_blank">SBB (Swiss Railway)</a>.</p>
+          </div>
+
+          <div class="section">
+            <h2>Final Cleaning</h2>
+            <p><strong>Please remember:</strong> We are responsible for leaving the castle tidy. Everyone is expected to help with basic cleaning tasks before departure.</p>
+          </div>
+
+          <div class="section">
+            <h2>Packing List (for Knights, Ladies, and Squires of All Ages)</h2>
+
+            <h3>Essentials</h3>
+            <ul>
+              <li><strong>Towel</strong> (unless you want to drip-dry)</li>
+              <li><strong>Torch/flashlight</strong> (for midnight bathroom quests and late-night ghost hunts)</li>
+              <li><strong>Slippers or indoor shoes</strong> (stone floors and cold toes are a bad combo)</li>
+              <li>Water bottle (stay hydrated, even medieval-style)</li>
+            </ul>
+
+            <h3>Toiletries</h3>
+            <ul>
+              <li>Toothbrush, toothpaste</li>
+              <li><strong>Earplugs</strong> (yes, some snore like angry ogres)</li>
+            </ul>
+
+            <h3>Clothing</h3>
+            <ul>
+              <li>Warm jumper or fleece (castles are not known for central heating)</li>
+              <li>Hiking gear: boots, daypack</li>
+              <li>Rain gear (just in case the heavens open)</li>
+              <li><strong>Swimsuit</strong> (a must - mountain lakes, rivers, and spontaneous hose fights await)</li>
+              <li>Costumes for medieval mischief (optional but very encouraged)</li>
+            </ul>
+
+            <h3>Extras</h3>
+            <ul>
+              <li>Games (board, card, etc.)</li>
+              <li>Musical instruments (lute, triangle, ukulele, war drum - we are not picky)</li>
+              <li>Snacks and secret chocolate stash</li>
+              <li>Phone charger (plus power bank if you are planning to roam far)</li>
+            </ul>
+
+            <h3>What NOT to bring</h3>
+            <ul>
+              <li>Bedding (linen and blankets) - already provided by the castle staff</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h2>Frequently Asked Questions (FAQ)</h2>
+
+            <p><strong>Q: Is there Wi-Fi at the castle?</strong><br>
+            A: Sometimes - do not count on it. The real network is <em>human</em> anyway.</p>
+
+            <p><strong>Q: Can we cook in the castle?</strong><br>
+            A: Absolutely. There is a really good kitchen on-site, complete with a semi-professional dishwasher. Perfect for preparing royal feasts and post-hike hunger attacks.</p>
+
+            <p><strong>Q: Will I get a private room?</strong><br>
+            A: No, noble guest, you will not. Bring a nightgown and a sense of humor.</p>
+
+            <p><strong>Q: What about laundry?</strong><br>
+            A: Let us just say... pack enough. Or get creative with the river.</p>
+
+            <p><strong>Q: Will there be a daily schedule?</strong><br>
+            A: Sort of.</p>
+
+            <p><strong>Q: I do not know anyone!</strong><br>
+            A: You will. Quickly. And probably for life. That is the whole point.</p>
+          </div>
+
+          <div class="section">
+            <h2>The Ehrenfels Code of Chivalry</h2>
+            <ol>
+              <li><strong>Bring curiosity.</strong> Leave titles, roles, and egos at the drawbridge.</li>
+              <li><strong>Contribute what you can.</strong> Organize a walk, stir a pot, lead a silly game. No act too small.</li>
+              <li><strong>Respect quiet hours.</strong> Approx. 23:00 to 07:30 (unless a dragon attacks).</li>
+              <li><strong>Honor the Cleanup Code.</strong> Leave things better than you found them.</li>
+              <li><strong>Include everyone.</strong> We are many nations, many ages, many backgrounds. That is our magic.</li>
+              <li><strong>Capture memories, not just selfies.</strong> Photos are great. So is being fully present.</li>
+              <li><strong>Signal will again be our messenger hawk.</strong></li>
+              <li><strong>We laugh with, not at.</strong> Unless it is Klaus in tights. Then, fair game.</li>
+            </ol>
+          </div>
+
+          <hr class="divider">
+
+          <div class="section">
+            <h2>Other information (relevant for planning your stay)</h2>
+
+            <h3>Stay</h3>
+            <p>If you are into having your own room and shower or are planning a shorter stay than 6 nights, consider booking at one of the following nearby hotels:</p>
+            <ul>
+              <li><strong>Sils im Domleschg</strong> (15 minutes by foot to the castle, easy hike, 70 meters altitude gain)
+                <ul>
+                  <li><a href="https://maps.app.goo.gl/jtqxScWX2xzTiErU6" target="_blank">Gasthaus Post</a> - the primary hotel option in Sils. I could not find it on booking.com, so you probably have to book directly with them.</li>
+                </ul>
+              </li>
+              <li><strong>Thusis</strong> (30-45 minutes by foot to the castle, a hike, 60 meters altitude gain)
+                <ul>
+                  <li><a href="https://maps.app.goo.gl/d3Pr2CDm9ExUYuZ69" target="_blank">Nolla Apartment</a> - exceptional ratings (9.6 on booking.com), great for a more private stay.</li>
+                  <li><a href="https://maps.app.goo.gl/Eo9VwVxB47jDsVEC6" target="_blank">Gyger AG Restaurant Confiserie B&B</a> - highly rated (8.7) and budget-friendly.</li>
+                  <li><a href="https://maps.app.goo.gl/d3Pr2CDm9ExUYuZ69" target="_blank">Story Thusis</a> - superb ratings (9.0), higher-end option. This is also where we rented the bikes in 2025.</li>
+                  <li><a href="https://maps.app.goo.gl/gheiGiVEV44fkgK87" target="_blank">Hotel Weiss Kreuz</a> - very good ratings (8.5), with breakfast included.</li>
+                </ul>
+              </li>
+            </ul>
+            <p>If you are thinking of staying in a hotel, I suggest booking <strong>early</strong> to ensure availability. You are welcome to have breakfast with the rest of us in the castle. Typically this is between 8 and 10 am.</p>
+
+            <h3>Staying in the Castle</h3>
+            <p>If you would like to stay in the castle itself, please let me know <strong>as soon as possible</strong> so I can reserve your spot. When not booked for events like ours here, the castle operates as a youth hostel. It has <strong>35 beds</strong> (mostly bunks) available across 6 dorm rooms (with 12, 8, 6, 4, 3, and 2 beds). <strong>Preference for staying in the castle will be given to those staying the full 6 nights.</strong></p>
+            <p>The total price for 6 nights in the castle will probably be around <strong>CHF / EUR / USD 200</strong>. Included are a pillow, duvet and linens. A towel you have to bring yourself or rent for CHF 3.</p>
+            <p>If you book a spot in the castle, do not pay just yet. You will receive an email with paying instructions later. Should you need to cancel after payment, and we can find a substitute (which is quite likely), you will receive a full refund.</p>
+            <p>And yes, I know, everybody wants the 2- or 3-bed rooms, but unfortunately, that is not possible. So only ask for one if you <em>really</em> have a good reason.</p>
+
+            <h3>No Occasion</h3>
+            <p>Several people have asked if this is a birthday celebration. It is not. While I rented the castle for my birthday in 2019, this meetup, just like in 2022 and 2025, is simply a gathering of friends from around the world. No need to worry about presents or lugging items across the seas. That said, if you need an excuse to party, I am sure we can come up with something together.</p>
+
+            <h3>Interested?</h3>
+            <p>Would you like to stay informed about this Castle Meetup? Sign up <a href="https://forms.gle/KinS3XSfZCH6cBnx7">here</a> then.</p>
+          </div>
+        </div>
+
+        <div class="lang" data-lang="de">
+          <div class="section">
+            <h2>Allgemeine Informationen</h2>
+            <p>Diese Seite wird für allgemeine Informationen zum Castle Meetup genutzt. Details werden laufend ergänzt. Wenn dir etwas fehlt oder du Vorschläge hast (Ausflüge und andere Aktivitäten) – besonders, wenn du dich bereit erklärst, etwas zu organisieren – trage es einfach in den Kalender ein.</p>
+            <p class="note">Hinweis: Ich wollte 2028 mit 2027 tauschen, aber das ging nicht, weil die Burg 2027 bereits ausgebucht ist.</p>
+          </div>
+
+          <div class="section">
+            <h2>Die Burg</h2>
+            <p>Hier findest du weitere Informationen zur Burg:</p>
+            <ul>
+              <li><a href="https://www.youthhostel.ch/de/hostels/sils-im-domleschg/" target="_blank">Homepage</a> (Deutsch)</li>
+              <li><a href="https://maps.app.goo.gl/Vj98qw8bzaSpQbGTA" target="_blank">Karte</a></li>
+              <li><a href="https://www.google.ch/maps/uv?hl=en&pb=!1s0x4784eb0f557c2c5d%3A0x1e3899521af899b2!3m1!7e115!4shttps%3A%2F%2Fen.wikipedia.org%2Fwiki%2FEhrenfels_Castle_%28Grisons%29!5sburg%20ehrenfels%20sils%20im%20domleschg%20-%20Google%20Search!15sCgIgAQ&imagekey=!1e10!2sAF1QipPus7UhadGhDanl9Qmv6tALnarpX0MaVd9LInh6&sa=X&ved=2ahUKEwias4CRj5rfAhWLjiwKHcT4AVUQoiowD3oECAYQBg" target="_blank">Bilder</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Ehrenfels_Castle_%28Grisons%29" target="_blank">Wikipedia</a></li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h2>Agenda</h2>
+            <p>Es ist noch nicht viel geplant. Sicher ist: Wir feiern den 1. August gemeinsam. Wie in den letzten drei Treffen 2019, 2022 und 2025 werden wir wandern, biken, kochen, spielen, lachen, entspannen und natürlich feiern.</p>
+            <p>Inspiration:</p>
+            <ul>
+              <li>1. August: Schweizer Nationalfeiertag, Raclette und Käsefondue, Feuerwerk schauen</li>
+              <li>Mindestens an einem Tag eine längere Wanderung</li>
+              <li>Eventuell eine Biketour - wir müssen Fahrräder mieten und rechtzeitig reservieren (2025 Preise: CHF 80 pro Velo und Tag) - jemand müsste die Organisation übernehmen</li>
+              <li>Brett- und Kartenspiele, Tischtennis, Tischfussballturnier, Backgammon, Ukulele- und Bridge-Kurse usw. - das haben wir in früheren Jahren schon gemacht</li>
+              <li>Gemeinsam kochen. Jede Person ist willkommen, für einen Abend die Leitung zu übernehmen - vielleicht hast du ein Lieblingsgericht. Natürlich gibt es Helferlein zum Kartoffelschälen und Rühren</li>
+              <li>Vielleicht ein Nachtspaziergang</li>
+              <li>Vielleicht Olympiade mit verschiedenen Disziplinen</li>
+              <li>Terraforming Mars, Space Alert, Werwolf, Secret H.?</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h2>Anreise und Parkieren</h2>
+            <p>Du kannst dein Auto in der Nähe der Burg ausladen (oder sogar direkt vor die Burg fahren, falls du einen kleinen 4x4 hast), aber dort kannst du nicht parken. Der <a href="https://maps.app.goo.gl/uwQGpBzpU1h92rFY6" target="_blank">kostenlose Parkplatz</a> ist etwa 10 Minuten zu Fuss entfernt.</p>
+            <p>Wenn du mit dem ÖV anreist, nimm den Zug nach Thusis und:</p>
+            <ul>
+              <li>nimm ein Taxi vom Bahnhof</li>
+              <li>lass dich von jemandem abholen, der bereits vor Ort ist</li>
+              <li>geh zu Fuss (ca. 45 Minuten bergauf)</li>
+              <li>nimm den Bus B513 oder B521 nach Sils im Domleschg (5 Minuten) und geh von dort zu Fuss (15 Minuten)</li>
+            </ul>
+            <p>Zug- und Busverbindungen findest du bei der <a href="https://sbb.ch/en" target="_blank">SBB</a>.</p>
+          </div>
+
+          <div class="section">
+            <h2>Endreinigung</h2>
+            <p><strong>Bitte daran denken:</strong> Wir sind dafür verantwortlich, die Burg sauber zu hinterlassen. Alle helfen vor der Abreise bei der Grundreinigung mit.</p>
+          </div>
+
+          <div class="section">
+            <h2>Packliste (für Ritter, Damen und Knappen jeden Alters)</h2>
+
+            <h3>Wichtiges</h3>
+            <ul>
+              <li><strong>Handtuch</strong> (ausser du willst tropfend trocknen)</li>
+              <li><strong>Taschenlampe</strong> (für nächtliche Badezimmer-Quests und Geisterjagden)</li>
+              <li><strong>Finken oder Hausschuhe</strong> (Steinboden + kalte Füsse = schlechte Kombi)</li>
+              <li>Trinkflasche (hydratisiert bleiben, auch mittelalterlich)</li>
+            </ul>
+
+            <h3>Toilettenartikel</h3>
+            <ul>
+              <li>Zahnbürste, Zahnpasta</li>
+              <li><strong>Ohrstöpsel</strong> (ja, manche schnarchen wie wütende Oger)</li>
+            </ul>
+
+            <h3>Kleidung</h3>
+            <ul>
+              <li>Warmer Pullover oder Fleece (Burgen sind nicht für Zentralheizungen bekannt)</li>
+              <li>Wanderzeug: Schuhe, Tagesrucksack</li>
+              <li>Regenschutz (falls der Himmel aufbricht)</li>
+              <li><strong>Badeanzug</strong> (ein Muss - Bergseen, Flüsse und spontane Schlauchschlachten warten)</li>
+              <li>Kostüme für mittelalterlichen Unfug (optional, aber sehr empfohlen)</li>
+            </ul>
+
+            <h3>Extras</h3>
+            <ul>
+              <li>Spiele (Brett, Karten, etc.)</li>
+              <li>Musikinstrumente (Laute, Triangel, Ukulele, Kriegstrommel - wir sind nicht wählerisch)</li>
+              <li>Snacks und geheime Schokoladenvorräte</li>
+              <li>Handyladegerät (plus Powerbank, falls du länger herumstreifst)</li>
+            </ul>
+
+            <h3>Was du NICHT mitbringen musst</h3>
+            <ul>
+              <li>Bettwäsche (Laken und Decken) - wird von der Burg gestellt</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h2>Häufige Fragen (FAQ)</h2>
+
+            <p><strong>F: Gibt es WLAN in der Burg?</strong><br>
+            A: Manchmal - verlass dich nicht darauf. Das echte Netzwerk ist <em>menschlich</em>.</p>
+
+            <p><strong>F: Können wir in der Burg kochen?</strong><br>
+            A: Absolut. Es gibt eine sehr gute Küche vor Ort, inklusive halbprofessioneller Spülmaschine. Perfekt für königliche Festmahle und Hunger nach der Wanderung.</p>
+
+            <p><strong>F: Bekomme ich ein eigenes Zimmer?</strong><br>
+            A: Nein, edler Gast, das wirst du nicht. Bring Nachthemd und Humor mit.</p>
+
+            <p><strong>F: Wie ist es mit Wäsche?</strong><br>
+            A: Sagen wir es so... pack genug ein. Oder werde kreativ am Fluss.</p>
+
+            <p><strong>F: Gibt es einen Tagesplan?</strong><br>
+            A: So ungefähr.</p>
+
+            <p><strong>F: Ich kenne niemanden!</strong><br>
+            A: Das wirst du. Schnell. Und wahrscheinlich fürs Leben. Das ist der ganze Punkt.</p>
+          </div>
+
+          <div class="section">
+            <h2>Der Ehrenfels-Kodex der Ritterlichkeit</h2>
+            <ol>
+              <li><strong>Bring Neugier mit.</strong> Lass Titel, Rollen und Egos am Burgtor.</li>
+              <li><strong>Bring dich ein.</strong> Organisiere einen Spaziergang, rühre den Topf, leite ein Spiel. Keine Tat ist zu klein.</li>
+              <li><strong>Ruhezeiten respektieren.</strong> Ca. 23:00 bis 07:30 (es sei denn, ein Drache greift an).</li>
+              <li><strong>Ehre den Cleanup Code.</strong> Hinterlasse alles besser, als du es vorgefunden hast.</li>
+              <li><strong>Alle einschliessen.</strong> Wir sind viele Nationen, viele Altersgruppen, viele Hintergründe. Das ist unsere Magie.</li>
+              <li><strong>Erinnerungen sammeln, nicht nur Selfies.</strong> Fotos sind super. Präsenz auch.</li>
+              <li><strong>Signal wird wieder unser Bote sein.</strong></li>
+              <li><strong>Wir lachen mit, nicht über.</strong> Ausser es ist Klaus in Strumpfhosen. Dann ist es fair.</li>
+            </ol>
+          </div>
+
+          <hr class="divider">
+
+          <div class="section">
+            <h2>Weitere Informationen (zur Planung deines Aufenthalts)</h2>
+
+            <h3>Unterkunft</h3>
+            <p>Wenn du ein eigenes Zimmer und Dusche möchtest oder kürzer als 6 Nächte bleiben willst, kannst du eines der folgenden Hotels in der Nähe buchen:</p>
+            <ul>
+              <li><strong>Sils im Domleschg</strong> (15 Minuten zu Fuss zur Burg, einfache Wanderung, 70 Meter Höhenunterschied)
+                <ul>
+                  <li><a href="https://maps.app.goo.gl/jtqxScWX2xzTiErU6" target="_blank">Gasthaus Post</a> - die Hauptoption in Sils. Ich konnte es nicht auf booking.com finden, vermutlich musst du direkt dort buchen.</li>
+                </ul>
+              </li>
+              <li><strong>Thusis</strong> (30-45 Minuten zu Fuss zur Burg, Wanderung, 60 Meter Höhenunterschied)
+                <ul>
+                  <li><a href="https://maps.app.goo.gl/d3Pr2CDm9ExUYuZ69" target="_blank">Nolla Apartment</a> - sehr gute Bewertungen (9.6 auf booking.com), ideal für mehr Privatsphäre.</li>
+                  <li><a href="https://maps.app.goo.gl/Eo9VwVxB47jDsVEC6" target="_blank">Gyger AG Restaurant Confiserie B&B</a> - hoch bewertet (8.7) und preiswert.</li>
+                  <li><a href="https://maps.app.goo.gl/d3Pr2CDm9ExUYuZ69" target="_blank">Story Thusis</a> - hervorragende Bewertungen (9.0), gehobene Option. Dort haben wir 2025 auch die Bikes gemietet.</li>
+                  <li><a href="https://maps.app.goo.gl/gheiGiVEV44fkgK87" target="_blank">Hotel Weiss Kreuz</a> - sehr gute Bewertungen (8.5), inkl. Frühstück.</li>
+                </ul>
+              </li>
+            </ul>
+            <p>Wenn du in einem Hotel bleiben möchtest, empfehle ich, <strong>früh</strong> zu buchen, um Verfügbarkeit zu sichern. Du darfst selbstverständlich mit uns im Schloss frühstücken. Normalerweise ist das zwischen 8 und 10 Uhr.</p>
+
+            <h3>Übernachten in der Burg</h3>
+            <p>Wenn du in der Burg selbst übernachten möchtest, sag mir bitte <strong>so bald wie möglich</strong> Bescheid, damit ich deinen Platz reservieren kann. Wenn die Burg nicht für Veranstaltungen wie unsere gebucht ist, wird sie als Jugendherberge geführt. Es gibt <strong>35 Betten</strong> (meist Etagenbetten) in 6 Schlafsälen (mit 12, 8, 6, 4, 3 und 2 Betten). <strong>Bevorzugt werden Personen, die alle 6 Nächte bleiben.</strong></p>
+            <p>Der Gesamtpreis für 6 Nächte in der Burg wird voraussichtlich etwa <strong>CHF / EUR / USD 200</strong> betragen. Inklusive sind Kissen, Duvet und Bettwäsche. Ein Handtuch bringst du selbst mit oder mietest eines für CHF 3.</p>
+            <p>Wenn du einen Platz in der Burg buchst, bezahle bitte noch nicht. Du erhältst später eine E-Mail mit den Zahlungsinformationen. Falls du nach der Zahlung absagen musst und wir einen Ersatz finden (was sehr wahrscheinlich ist), bekommst du selbstverständlich eine volle Rückerstattung.</p>
+            <p>Und ja, ich weiss, alle wollen die 2- oder 3-Bett-Zimmer, aber das ist leider nicht möglich. Frag also nur danach, wenn du <em>wirklich</em> einen guten Grund hast.</p>
+
+            <h3>Kein Anlass</h3>
+            <p>Mehrere Personen haben gefragt, ob es eine Geburtstagsparty ist. Das ist es nicht. Zwar habe ich die Burg 2019 zu meinem Geburtstag gemietet, aber dieses Treffen ist – wie 2022 und 2025 – einfach ein Zusammenkommen von Freundinnen und Freunden aus aller Welt. Keine Geschenke nötig und nichts über die Meere schleppen. Wenn du trotzdem einen Grund zum Feiern brauchst, finden wir einen.</p>
+
+            <h3>Interessiert?</h3>
+            <p>Möchtest du über dieses Castle Meetup informiert bleiben? Dann melde dich <a href="https://forms.gle/KinS3XSfZCH6cBnx7">hier</a> an.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
   <script>
-    const startDate = new Date("2028-07-30");
+    const startDate = new Date("2028-07-30T00:00:00");
     const today = new Date();
-    
-    // Clear time to ignore time of day
     startDate.setHours(0, 0, 0, 0);
     today.setHours(0, 0, 0, 0);
-    
     const diffInTime = startDate - today;
-    const diffInDays = Math.floor(diffInTime / (1000 * 60 * 60 * 24));
+    const diffInDays = Math.max(0, Math.ceil(diffInTime / (1000 * 60 * 60 * 24)));
+    const counter = document.getElementById("day-counter");
+    if (counter) {
+      counter.textContent = diffInDays;
+    }
 
-    document.getElementById("day-counter").textContent = diffInDays;
+    
+    const galleryImages = [
+      "P1100037.jpg",
+      "190804-008.jpg",
+      "190804-010.jpg",
+      "190804-012.jpg",
+      "2025-07-28 10.36.06.jpg",
+      "2025-07-29 11.57.59.jpg",
+      "2025-07-29 13.57.22.jpg",
+      "2025-07-29 17.09.17.jpg",
+      "2025-07-29 19.50.23.jpg",
+      "2025-07-30 11.45.04.jpg",
+      "2025-07-30 16.13.27.jpg",
+      "2025-07-30 19.14.22.jpg",
+      "2025-07-30 20.09.28.jpg",
+      "2025-07-30 22.33.45.jpg",
+      "2025-07-31 08.46.17.jpg",
+      "2025-07-31 09.26.30.jpg",
+      "2025-07-31 12.32.55.jpg",
+      "2025-07-31 15.04.32.jpg",
+      "2025-07-31 16.46.10.jpg",
+      "2025-07-31 19.40.16.jpg",
+      "2025-07-31 22.55.14.jpg",
+      "2025-08-01 09.37.13.jpg",
+      "2025-08-01 11.12.47.jpg",
+      "2025-08-01 14.52.15.jpg",
+      "2025-08-01 18.32.36.jpg",
+      "2025-08-01 19.54.04.jpg",
+      "SNY09893.JPG",
+      "SNY09908.JPG",
+      "SNY09922.JPG",
+      "SNY09975.JPG",
+      "SNY09982.JPG",
+      "SNY09989.JPG",
+      "SNY09997.JPG"
+    ];
+
+    const carouselImage = document.getElementById("carousel-image");
+    const carouselCaption = document.getElementById("carousel-caption");
+    const carouselThumbs = document.getElementById("carousel-thumbs");
+    const prevBtn = document.querySelector(".carousel-btn.prev");
+    const nextBtn = document.querySelector(".carousel-btn.next");
+
+    let galleryIndex = 0;
+    let galleryTimer = null;
+
+    function formatCaption(name) {
+      return name.replace(/\.[^/.]+$/, "").replace(/_/g, " ");
+    }
+
+    function setGalleryImage(index) {
+      if (!carouselImage || !galleryImages.length) return;
+      galleryIndex = (index + galleryImages.length) % galleryImages.length;
+      const src = galleryImages[galleryIndex];
+      const encodedSrc = encodeURI(src);
+      carouselImage.src = encodedSrc;
+      carouselImage.alt = formatCaption(src);
+      if (carouselCaption) {
+        carouselCaption.textContent = formatCaption(src);
+      }
+      if (carouselThumbs) {
+        carouselThumbs.querySelectorAll("button").forEach((btn, i) => {
+          btn.classList.toggle("active", i === galleryIndex);
+        });
+      }
+    }
+
+    function nextGallery() {
+      setGalleryImage(galleryIndex + 1);
+    }
+
+    function prevGallery() {
+      setGalleryImage(galleryIndex - 1);
+    }
+
+    function startGalleryTimer() {
+      stopGalleryTimer();
+      galleryTimer = setInterval(nextGallery, 6000);
+    }
+
+    function stopGalleryTimer() {
+      if (galleryTimer) {
+        clearInterval(galleryTimer);
+        galleryTimer = null;
+      }
+    }
+
+    if (carouselThumbs) {
+      galleryImages.forEach((src, i) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        const img = document.createElement("img");
+        img.src = encodeURI(src);
+        img.alt = formatCaption(src);
+        btn.appendChild(img);
+        btn.addEventListener("click", () => {
+          setGalleryImage(i);
+          startGalleryTimer();
+        });
+        carouselThumbs.appendChild(btn);
+      });
+    }
+
+    if (prevBtn && nextBtn) {
+      prevBtn.addEventListener("click", () => {
+        prevGallery();
+        startGalleryTimer();
+      });
+      nextBtn.addEventListener("click", () => {
+        nextGallery();
+        startGalleryTimer();
+      });
+    }
+
+    if (carouselImage) {
+      carouselImage.addEventListener("mouseenter", stopGalleryTimer);
+      carouselImage.addEventListener("mouseleave", startGalleryTimer);
+    }
+
+    setGalleryImage(0);
+    startGalleryTimer();
+
+    const buttons = document.querySelectorAll("[data-lang-toggle]");
+    const sections = document.querySelectorAll(".lang");
+
+    function setLanguage(lang) {
+      sections.forEach((section) => {
+        section.classList.toggle("active", section.dataset.lang === lang);
+      });
+      buttons.forEach((button) => {
+        button.setAttribute("aria-pressed", button.dataset.langToggle === lang ? "true" : "false");
+      });
+      document.documentElement.setAttribute("lang", lang);
+      const langInline = document.querySelectorAll(".lang-inline");
+      langInline.forEach((node) => {
+        node.classList.toggle("active", node.dataset.lang === lang);
+      });
+      localStorage.setItem("castleMeetupLang", lang);
+    }
+
+    const saved = localStorage.getItem("castleMeetupLang");
+    setLanguage(saved || "en");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.dataset.langToggle));
+    });
   </script>
-
-
-    <h2>General Information</h2>
-    <p>We will use this page for general information about the castle meetup. Details are continuously added. If anybody is missing something or has suggestions (for excursions and other pastimes) – especially if you volunteer to take responsibility for organizing something – just put it in the calendar.</p>
-
-    <h2>The Castle</h2>
-    <p>Here you can find some more information on the castle:
-    <ul>
-      <li><a href="https://www.youthhostel.ch/de/hostels/sils-im-domleschg/" target="_blank">Homepage</a> (German)</li>
-      <li><a href="https://maps.app.goo.gl/Vj98qw8bzaSpQbGTA" target="_blank">Maps</a></li>
-      <li><a href="https://www.google.ch/maps/uv?hl=en&pb=!1s0x4784eb0f557c2c5d%3A0x1e3899521af899b2!3m1!7e115!4shttps%3A%2F%2Fen.wikipedia.org%2Fwiki%2FEhrenfels_Castle_%28Grisons%29!5sburg%20ehrenfels%20sils%20im%20domleschg%20-%20Google%20Search!15sCgIgAQ&imagekey=!1e10!2sAF1QipPus7UhadGhDanl9Qmv6tALnarpX0MaVd9LInh6&sa=X&ved=2ahUKEwias4CRj5rfAhWLjiwKHcT4AVUQoiowD3oECAYQBg" target="_blank">Pictures</a></li>
-      <li><a href="https://en.wikipedia.org/wiki/Ehrenfels_Castle_%28Grisons%29" target="_blank">Wikipedia</a></li>
-    </ul>
-
-    <h2>Agenda</h2>
-    <p>Not a lot is planned yet. What we know for sure is that we will be celebrating August 1st together. Like the last three times in 2019, 2022, and 2025 we will hike together, bike, cook, play, laugh, relax and of course party hard.</p>
-
-<!--
-    Here is our <a href="https://teamup.com/ksc7a7dwv6uitues8y">TeamUp calendar</a> (editable by everybody without login!). Use it to add activities and other!
-
-    <p> <iframe src="https://teamup.com/kswd55y1kx7yj65kk5?tz=Calendar%20default&showProfileAndInfo=0&showSidepanel=1&showViewHeader=1&showAgendaDetails=0&showDateControls=1&showDateRange=1" style="width: 100%; height: 900px; border: 1px solid #cccccc" loading="lazy" frameborder="0"></iframe>    
-
--->
-
-     <p> Inspiration: <ul>
-       <li> August 1st: Swiss national day, Raclette and Cheese Fondue, watching fireworks</li>
-       <li> At least one day we'll do a longer hike
-       <li> Possibly also a bike tour - will need to rent bikes which have to be reserved in advance (2025 prices: CHF 80/bike and day) - somebody needs to take the lead on this
-       <li> Playing board and card games, ping pong, foosball tournament, Backgammon, Ukulele and Bridge classes, etc. - this is all stuff we have done earlier years.
-       <li> Preparing meals together. Everybody is welcome to take the lead on this for an evening - maybe you have a favorite meal you would want to prepare for the rest of us. Of course you'll be provided with minions helping you peel potatoes and stir the stew.
-       <li> Maybe a night walk?
-       <li> Maybe some Olympics with all kinds of different competitions?
-       <li> Terra Forming Mars? Space Alert? Werewolf? Secret H.?
-     </ul>
-
-    <h2>Getting there and parking</h2>
-    <p>You can unload your car near the castle (or even right in front of the castle if you have a small 4x4), but you can't park there. The <a href="https://maps.app.goo.gl/uwQGpBzpU1h92rFY6" target="_blank">free parking lot </a>is about 10 minutes walk away.</p>
-    <p>If you arrive by public transport, take the train to Thusis and
-    <ul>
-      <li>... catch a Taxi from the train station</li>
-      <li>... get somebody who already is at the castle to pick you up</li>
-      <li>... walk (but it is a 45 min. walk up the hill)</li>
-      <li>... take the bus B513 or B521 to Sils im Domleschg (5 min) and walk from there (15 min)</li>
-    </ul>
-    Check train and bus connections here at <a href="https://sbb.ch/en" target="_blank">SBB (Swiss Railway)</a>
-
-<!--
-    <h2>Participants</h2>
-    <p>Status on July 6th, 2025:</p>
-    <ul>
-      <li>26 people staying full time in the castle</li>
-      <li>41 people will join in total (29 adults, 12 teens)</li>
-    </ul>
--->
-
-    <h2>Final Cleaning</h2>
-    <p><strong>Please remember:</strong> We are responsible for leaving the castle tidy. Everyone is expected to help with basic cleaning tasks before departure.</p>
-
-
-<h2> Packing List (for Knights, Ladies, and Squires of All Ages)</h2>
-
-<h3>✅ Essentials</h3>
-<ul>
-  <li><strong>Towel</strong> (unless you want to drip-dry)</li>
-  <li><strong>Torch/flashlight</strong> (for midnight bathroom quests and late-night ghost hunts)</li>
-  <li><strong>Slippers or indoor shoes</strong> (stone floors and cold toes are a bad combo)</li>
-  <li>Water bottle (stay hydrated, even medieval-style)</li>
-</ul>
-
-<h3>🧴 Toiletries</h3>
-<ul>
-<!--
-  <li>Soap/shampoo</li>
--->
-  <li>Toothbrush, toothpaste</li>
-  <li><strong>Earplugs</strong> (yes, some snore like angry ogres)</li>
-</ul>
-
-<h3>🧥 Clothing</h3>
-<ul>
-  <li>Warm jumper or fleece (castles are not known for central heating)</li>
-  <li>Hiking gear: boots, daypack</li>
-  <li>Rain gear (just in case the heavens open)</li>
-  <li><strong>Swimsuit</strong> (a must—mountain lakes, rivers, and spontaneous hose fights await!)</li>
-  <li>Costumes for medieval mischief (optional but very encouraged)</li>
-</ul>
-
-<h3>🎲 Extras</h3>
-<ul>
-  <li>Games (board, card, etc.)</li>
-  <li>Musical instruments (lute, triangle, ukulele, war drum… we’re not picky)</li>
-<!--
-  <li>Books, sketchpads, or notebooks</li>
--->
-  <li>Snacks & secret chocolate stash</li>
-  <li>Phone charger (plus power bank if you’re planning to roam far)</li>
-</ul>
-
-<h3>🛏️ What <em>NOT</em> to bring</h3>
-<ul>
-  <li>Bedding (linen and stuff) – already provided by the castle staff!</li>
-</ul>
-
-
-<h2> Frequently Asked Questions (FAQ)</h2>
-
-<p><strong>Q: Is there Wi-Fi at the castle?</strong><br>
-A: Sometimes - don't count on it. The real network is <em>human</em> anyway.</p>
-
-<p><strong>Q: Can we cook in the castle?</strong><br>
-A: Absolutely! There’s a really good kitchen on-site, complete with a semi-professional dishwasher. Perfect for preparing royal feasts and post-hike hunger attacks.</p>
-
-<p><strong>Q: Will I get a private room?</strong><br>
-A: No, noble guest, you will not. Bring a night gown and a sense of humor.</p>
-
-<p><strong>Q: What about laundry?</strong><br>
-A: Let’s just say... pack enough. Or get creative with the river.</p>
-
-<p><strong>Q: Will there be a daily schedule?</strong><br>
-A: Sort of. <!-- Check the Teamup calendar, or just ask what’s up at breakfast. --></p>
-
-<p><strong>Q: I don’t know anyone!</strong><br>
-A: You will. Quickly. And probably for life. That’s the whole point.</p>
-
-
-<h2> The Ehrenfels Code of Chivalry</h2>
-
-<ol>
-  <li><strong>Bring curiosity.</strong> Leave titles, roles, and egos at the drawbridge.</li>
-  <li><strong>Contribute what you can.</strong> Organize a walk, stir a pot, lead a silly game. No act too small.</li>
-  <li><strong>Respect quiet hours.</strong> Approx. 23:00 to 07:30 (unless a dragon attacks).</li>
-  <li><strong>Honor the Cleanup Code.</strong> Leave things better than you found them.</li>
-  <li><strong>Include everyone.</strong> We're many nations, many ages, many backgrounds. That’s our magic.</li>
-  <li><strong>Capture memories, not just selfies.</strong> Photos are great. So is being fully present.</li>
-  <li><strong>Signal will again be our messenger hawk.</strong> <!-- Join the group. Stay in the loop. --> </li>
-  <li><strong>We laugh <em>with</em>, not <em>at</em>.</strong> Unless it’s Klaus in tights. Then, fair game.</li>
-</ol>
-
-<hr>
-<h1> Other information (relevant for planning your stay) </h1>
-    <h2>Stay</h2>
-
-    <h3>Hotel Options</h3>
-    <p>If you're into having your own room and shower or are planning a shorter stay than 6 nights, consider booking at one of the following nearby hotels:</p>
-    <ul>
-        <li><strong>Sils im Domleschg</strong> (15 minutes by foot to the castle, easy hike, 70 meters altitude gain)
-            <ul>
-                <li><a href="https://maps.app.goo.gl/jtqxScWX2xzTiErU6" target="_blank">Gasthaus Post</a> – the primary hotel option in Sils. I couldn't find it on booking.com, so you probably have to book directly with them.</li>
-            </ul>
-        </li>
-        <li><strong>Thusis</strong> (30-45 minutes by foot to the castle, a hike, 60 meters altitude gain)
-            <ul>
-                <li><a href="https://maps.app.goo.gl/d3Pr2CDm9ExUYuZ69" target="_blank">Nolla Apartment</a> – Exceptional ratings (9.6 on booking.com), great for a more private stay.</li>
-                <li><a href="https://maps.app.goo.gl/Eo9VwVxB47jDsVEC6" target="_blank">Gyger AG Restaurant Confiserie B&B</a> – Highly rated (8.7) and budget-friendly.</li>
-                <li><a href="https://maps.app.goo.gl/d3Pr2CDm9ExUYuZ69" target="_blank">Story Thusis</a> – Superb ratings (9.0), higher-end option. This is also where we rented the bikes in 2025.</li>
-                <li><a href="https://maps.app.goo.gl/gheiGiVEV44fkgK87" target="_blank">Hotel Weiss Kreuz</a> – Very good ratings (8.5), with breakfast included.</li>
-            </ul>
-        </li>
-    </ul>
-    <p>If you’re thinking of staying in a hotel, I suggest booking <strong>early</strong> to ensure availability. You're welcome to have breakfast with the rest of us in the castle. Typically this is between 8 and 10 am. </p>
-
-    <h3>Staying in the Castle</h3>
-
-    <p>If you'd like to stay in the castle itself, please let me know <strong>as soon as possible</strong> so I can reserve your spot. When not booked for events like ours here, the castle operates as a youth hostel. It has <strong>35 beds</strong> (mostly bunks) available across 6 dorm rooms (with 12, 8, 6, 4, 3, and 2 beds). <strong>Preference for staying in the castle will be given to those staying the full 6 nights.</strong></p>
-
-    <p>The total price for 6 nights in the castle will probably be around <strong>CHF / EUR / USD 200</strong>. Included are a pillow, duvet and linnen. Towel you have to bring yourself or rent for CHF 3.</p>
-
-    <p>If you book a spot in the castle, don't pay just yet. You'll receive an e-mail with paying instruction later. Should you need to cancel after payment, and we can find a substitute (which is quite likely), you'll receive a full refund, of course.</p>
-
-    <p>And yes, I know, everybody wants the 2- or 3-bed rooms, but unfortunately, that's not possible ;-). So only ask for one if your <em>really</em> have a good reason</p>
-
-<!--
-    <h2>Payment Information</h2>
-    <ul>
-        <li><strong>Swiss participants:</strong> You can Twint me the money at <strong>079 202 59 46</strong>.</li>
-        <li><strong>Danish participants:</strong> You can MobilePay me the money at <strong>55 23 91 23</strong>.</li>
-        <li><strong>International participants:</strong> Let me know which currency you’d prefer to pay in, and I’ll send you the necessary payment details.</li>
-    </ul>
--->
-
-    <h2>No Occasion</h2>
-    <p>Several people have asked if this is a birthday celebration. It's not! While I rented the castle for my birthday in 2019, this meetup, just like in 2022 and 2025, is simply a gathering of friends from around the world. No need to worry about presents or lugging items across the seas. That said, if you need an excuse to party, I'm sure we can come up with something together!</p>
-
-    <h2>Interested?</h2>
-    <p>Would you like to stay informed about this Castle Meetup? Sign up <a href="https://forms.gle/KinS3XSfZCH6cBnx7">here</a> then.</p>
-
-</div>
-
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
 
