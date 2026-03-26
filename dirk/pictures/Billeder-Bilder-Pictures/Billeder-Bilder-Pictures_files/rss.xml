@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:iphoto="urn:iphoto:property" xmlns:iweb="http://www.apple.com/iweb" version="2.0">
+  <channel>
+    <title>Billeder - Bilder - Pictures</title>
+    <link>http://www.bucka-lassen.dk/dirk/pictures/Billeder-Bilder-Pictures/Billeder-Bilder-Pictures.html</link>
+    <description>Billeder - Bilder - Pictures</description>
+    <item>
+      <title>Gæster-Gäste-Guests</title>
+      <link>http://www.bucka-lassen.dk/dirk/pictures/Billeder-Bilder-Pictures/Pages/G%C3%A6ster-G%C3%A4ste-Guests.html</link>
+      <guid isPermaLink="false">0fbfaa52-6577-49e9-a06d-95f3acb72b07</guid>
+    </item>
+    <item>
+      <title>Kirke-Kirche-Church</title>
+      <link>http://www.bucka-lassen.dk/dirk/pictures/Billeder-Bilder-Pictures/Pages/Kirke-Kirche-Church.html</link>
+      <guid isPermaLink="false">bbebd22e-effd-40b7-9c18-8a61ef1aaa0a</guid>
+    </item>
+    <item>
+      <title>Lene &amp; Dirk</title>
+      <link>http://www.bucka-lassen.dk/dirk/pictures/Billeder-Bilder-Pictures/Pages/Lene_%26_Dirk.html</link>
+      <guid isPermaLink="false">3dbe0853-ecf9-4191-b0ae-4aa272e565b2</guid>
+    </item>
+    <item>
+      <title>Solnedgang</title>
+      <link>http://www.bucka-lassen.dk/dirk/pictures/Billeder-Bilder-Pictures/Pages/Solnedgang.html</link>
+      <guid isPermaLink="false">25478e05-001b-4ec0-aa3f-142874cea97d</guid>
+    </item>
+    <item>
+      <title>Shapshots</title>
+      <link>http://www.bucka-lassen.dk/dirk/pictures/Billeder-Bilder-Pictures/Pages/Shapshots.html</link>
+      <guid isPermaLink="false">a92809f2-7fb9-4c3c-9f66-248d26d29e11</guid>
+    </item>
+  </channel>
+</rss>

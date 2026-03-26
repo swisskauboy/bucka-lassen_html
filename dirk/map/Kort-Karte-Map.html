@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+    <meta name="Generator" content="iWeb 1.1.2" />
+    <title>Kort-Karte-Map</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="Kort-Karte-Map_files/Kort-Karte-Map.css" /><script type="text/javascript" src="Kort-Karte-Map_files/Kort-Karte-Map.js"></script>
+
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA0MjqY2MyUBCA9o_Q24dzgxRkX9FdXNTSJ8II70hJzalc38MbnxSFOrvselK6WBGfIwP5n9ZwyToW8w"      type="text/javascript"></script>    <script type="text/javascript">    //<![CDATA[    function load() {      if (GBrowserIsCompatible()) {	var map = new GMap2(document.getElementById("map"));
+	map.addControl(new GLargeMapControl());	map.addControl(new GMapTypeControl()); 
+	map.checkResize();
+
+	var ferieCenter = new GLatLng(55.4955, 9.7039); 
+	var kastrup = new GLatLng(55.620526, 12.649457);
+	var kirke = new GLatLng(55.457393, 9.889406);
+	var hamburg = new GLatLng(53.64952199454264, 10.008544921875);
+	var billund = new GLatLng(55.742007, 9.15354);
+	var center = new GLatLng(55, 11.0);
+
+        map.setCenter(center, 7); 
+
+  	map.addOverlay(new GMarker(ferieCenter));   	map.addOverlay(new GMarker(kirke));
+  	map.addOverlay(new GMarker(kastrup));
+  	map.addOverlay(new GMarker(hamburg));
+  	map.addOverlay(new GMarker(billund));
+	
+	// Kastrup info
+	var kastrupInfo = [  new GInfoWindowTab("Adresse", "Copenhagen Airport (CPH)<br><a href='http://www.cph.dk' target=link>www.cph.dk</a>") ];  	var kastrupMarker = new GMarker(kastrup);
+	GEvent.addListener(kastrupMarker, "click", function() {  kastrupMarker.openInfoWindowTabsHtml(kastrupInfo);});  	map.addOverlay(kastrupMarker);
+	//kastrupMarker.openInfoWindowTabsHtml(kastrupInfo);
+  		// Kirke info
+	var kirkeInfo = [  new GInfoWindowTab("Adresse", "Nørre Aaby Church<br>Præstegårdsvej 11<br>5580 Nørre Aaby") ];  	var kirkeMarker = new GMarker(kirke);
+	GEvent.addListener(kirkeMarker, "click", function() {  kirkeMarker.openInfoWindowTabsHtml(kirkeInfo);});  	map.addOverlay(kirkeMarker);
+	//kirkeMarker.openInfoWindowTabsHtml(kirkeInfo);
+  	  	// FerieCenter info  	var ferieCenterInfo = [  new GInfoWindowTab("Adresse", "FolkeFerie.dk - Middelfart<br />Oddevejen 8<br />5500 Middelfart")]; //,  
+//	new GInfoWindowTab("Kontakt", "Tlf.: 64 41 06 01<br /><a href='mailto:middelfart@folkeferie.dk'>Send en mail til Middelfart Feriecenter</a>")];  	var marker = new GMarker(ferieCenter);
+	GEvent.addListener(marker, "click", function() {  marker.openInfoWindowTabsHtml(ferieCenterInfo);});  	map.addOverlay(marker);
+	// marker.openInfoWindowTabsHtml(ferieCenterInfo);
+				
+	// Hamburg info
+	var hamburgInfo = [  new GInfoWindowTab("Adresse", "Hamburg Airport (HAM)<br><a href='http://www.ham.airport.de/index_en.phtml' target=link>link</a>") ];  	var hamburgMarker = new GMarker(hamburg);
+	GEvent.addListener(hamburgMarker, "click", function() {  hamburgMarker.openInfoWindowTabsHtml(hamburgInfo);});  	map.addOverlay(hamburgMarker);
+	//hamburgMarker.openInfoWindowTabsHtml(hamburgInfo);
+  		// Billund info
+	var billundInfo = [  new GInfoWindowTab("Adresse", "Billund Airport (BLL)<br><a href='http://www.billund-airport.com/' target=link>www.billund-airport.com</a>") ];  	var billundMarker = new GMarker(billund);
+	GEvent.addListener(billundMarker, "click", function() {  billundMarker.openInfoWindowTabsHtml(billundInfo);});  	map.addOverlay(billundMarker);
+	//billundMarker.openInfoWindowTabsHtml(billundInfo);
+  	      }    }    //]]>    </script>   </head>
+  <body style="background: #4d4d4d; margin: 0pt; "
+onload="onPageLoad();load()" onunload="GUnload()">
+    <div style="text-align: center; ">
+      <div style="margin-bottom: 0px; margin-left: auto; margin-right: auto; margin-top: 0px; overflow: hidden; position: relative;  background: transparent url(Images/pinstripe_bk_tile3-51.jpg) repeat scroll top left; text-align: left; width: 700px; " id="body_content">
+        <div style="float: left; height: 0px; line-height: 0px; margin-left: 0px; position: relative; width: 700px; z-index: 10; " id="header_layer">
+          <div style="height: 0px; line-height: 0px; " class="tinyText"> </div>
+        </div>
+        <div style="height: 47px; margin-left: 0px; position: relative; width: 700px; z-index: 0; " id="nav_layer">
+          <div style="height: 0px; line-height: 0px; " class="tinyText"> </div>
+          <div style="background: url(Kort-Karte-Map_files/navbar_background.png); height: 47px; left: 0px; position: absolute; top: 0px; width: 700px; z-index: 1; ">
+            <div style="background: transparent url(Kort-Karte-Map_files/navbar_active.png) no-repeat scroll center; height: 33px; left: 46px; position: absolute; top: 18px; width: 150px; z-index: 1; "></div>
+          </div>
+        </div>
+        <div style="margin-left: 0px; position: relative; width: 700px; z-index: 5; " id="body_layer">
+          <div style="height: 0px; line-height: 0px; " class="tinyText"> </div>
+          <div style="height: 1px; line-height: 1px; " class="tinyText"> </div>
+          <div class="graphic_generic_body_textbox_style_default" style="margin-left: 358px; margin-top: 20px; position: relative; width: 36px; z-index: 1; ">
+            <div style="height: 23px; line-height: 23px; " class="tinyText"> </div>
+          </div>
+          
+
+<img src="Kort-Karte-Map_files/shapeimage_1.jpg" alt="" style="height: 1px; left: 54px; position: absolute; top: 0px; width: 592px; z-index: 1; " />
+
+
+          <div class="graphic_generic_title_textbox_style_default" style="height: 54px; left: 50px; position: absolute; top: 10px; width: 600px; z-index: 1; " id="id1">
+            <div>
+              <div class="graphic_shape_layout_style_default">
+                <div class="paragraph Title" style="line-height: 46px; padding-bottom: 0pt; padding-top: 0pt; ">Kort - Karte - Map</div>
+              </div>
+            </div>
+          </div>
+          
+
+
+          <div class="graphic_textbox_style_default" style="height: 27px; left: 482px; position: absolute; top: 23px; width: 169px; z-index: 1; " id="id2">
+            <div>
+              <div class="graphic_textbox_layout_style_default">
+                <div class="paragraph Body_Medium" style="line-height: 20px; padding-bottom: 0pt; padding-top: 0pt; "><a href="../bryllup/Find_vej.html" title="../bryllup/Find_vej.html" style="line-height: 20px; opacity: 1.00; ">Tilbage</a><span> | </span><a href="../hochzeit/Anreise.html" title="../hochzeit/Anreise.html" style="line-height: 20px; opacity: 1.00; ">Zurück</a><span> | </span><a href="../wedding/Getting_There.html" title="../wedding/Getting_There.html" style="line-height: 20px; opacity: 1.00; ">Back</a></div>
+              </div>
+            </div>
+          </div>
+
+<div id="map" style="width: 600px; height: 500px; position: absolute; top: 100px; left: 54px"></div>
+
+          <div style="height: 498px; line-height: 498px; " class="tinyText"> </div>
+        </div>
+        <div style="height: 160px; margin-left: 0px; position: relative; width: 700px; z-index: 15; " id="footer_layer">
+          <div style="height: 0px; line-height: 0px; " class="tinyText"> </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+

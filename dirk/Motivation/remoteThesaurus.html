@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+        <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<script language="JavaScript">
+
+function bookmarkBounce()
+{ if (self.document.referrer.indexOf("remote.html")<0)
+  {alert("Your bookmark is set wrong -- it should point to http://machaut.uchicago.edu/~aaron/remote.html. This remote may appear in the full browser window as a result.")}
+  
+}
+
+function result()
+{ 
+
+//query history (limit of 20 entries)
+if (document.queryform.queryhistory.options.length<=20)
+ { document.queryform.queryhistory.options[document.queryform.queryhistory.options.length]=new Option(document.queryform.word.value, document.queryform.word.value) }
+else
+ { for (j=0;j<document.queryform.queryhistory.options.length;j++)
+    { document.queryform.queryhistory.options[j]=document.queryform.queryhistory.options[j+1] }
+   document.queryform.queryhistory.options[document.queryform.queryhistory.options.length]=new Option(document.queryform.word.value, document.queryform.word.value);
+   document.queryform.queryhistory.options[0]=new Option("Lookup History", "");
+   document.queryform.queryhistory.selectedIndex=0
+ }
+
+//strip spaces from string for window name
+queryWinName="";
+if (document.queryform.word.value.indexOf(" ")>=0)
+ { queryStrings = document.queryform.word.value.split(" ");
+   for (j=0;j<queryStrings.length;j++)
+    { queryWinName+=queryStrings[j]}
+ }
+else { queryWinName=document.queryform.word.value }
+queryWinName="result";
+  
+//open results window
+  if (navigator.appVersion.substring(0,1)>="4") {centerX=Math.round(screen.width/2)-250;centerY=Math.round(screen.height/2)-150}
+   else {centerX=400;centerY=300}
+  
+
+  resultWin=window.open("","WEDT_"+queryWinName,"toolbar=no,location=no,directories=no,status=no,menubar=yes,scrollbars=yes,resizable=yes,top=150,left=10,width=500,height=500,alwaysLowered=no,alwaysRaised=no,dependent=no,hotkeys=yes,titlebar=yes")
+  resultWin.document.open()
+  resultWin.document.write("<body bgcolor='#FFFFFF'>")
+  resultWin.document.write("<html><head><title>' "+document.queryform.word.value+" ' - WEDT Query</title></head><body bgcolor='#FFFFFF'><center><b>Retrieving your query...</b></center></body></html>")
+  resultWin.document.write("<center><img src='hourglass.gif'></center>")  
+  resultWin.document.close()
+  resultWin.focus()
+
+//esrsatz form submission by creating query URL
+qbase="http://machaut.uchicago.edu/cgi-bin/WEDT_WN_terse.sh"
+qword=document.queryform.word.value
+
+if (document.queryform.searchtype[0].checked) {qtype=document.queryform.searchtype[0].value;document.queryform.constraint.value=1}
+if (document.queryform.searchtype[1].checked) {qtype=document.queryform.searchtype[1].value;document.queryform.constraint.value=1}
+if (document.queryform.searchtype[2].checked) {qtype=document.queryform.searchtype[2].value;document.queryform.constraint.value=1}
+if (document.queryform.searchtype[3].checked) {qtype=document.queryform.searchtype[3].value;document.queryform.constraint.value=2}
+if (document.queryform.searchtype[4].checked) {qtype=document.queryform.searchtype[4].value;document.queryform.constraint.value=3}
+qconstraint=document.queryform.constraint.value
+
+query=qbase+"?word="+qword+"&searchtype="+qtype+"&constraint="+qconstraint
+
+resultWin.location=query
+
+
+if (navigator.userAgent.toLowerCase().indexOf('mac')<0) { if (!document.all) {history.go(0)} }
+ 
+
+}
+
+function help(mode)
+{ helpWin=window.open("","Help","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,width=450,height=150,top=50,left=100,alwaysLowered=no,alwaysRaised=no,dependent=no,hotkeys=yes,titlebar=yes")
+  helpWin.document.open()
+  helpWin.document.write("<html><head><title>Help</title></head><body bgcolor='#CFB4FC'>")
+  idx=mode;
+  if (mode=="exact") {idx=0};if (mode=="float") {idx=1};if (mode=="approx") {idx=2};if (mode=="spawn") {idx=3}  
+  helpWin.document.write("<font face='Arial' size='-1' color='#800000'>"+helps[idx]+"</font>")
+  helpWin.document.write("</body></html>")
+  helpWin.document.close();helpWin.focus()
+  
+}
+
+helps=new Array();
+helps[0]="<b>Exact</b> search will find a word if it is spelled correctly, and if it is a headword in the WEDT. This option will find two word entries that contain the word you have typed. For example, a search for <i>&quot;head&quot;</i> will find <i>&quot;head cold&quot;</i>, <i>&quot;head lettuce&quot;</i> and <i>&quot;head start&quot;</i> in addition to <i>&quot;head&quot;</i>. If you aren't sure how the word is spelled, try one of the other search options.";
+helps[1]="<b>Floating</b> search will find words which contain the word you are searching for. So, if you know only part of a word, type it in and try floating search. For example, a search for <i>&quot;head&quot;</i> will find <i>&quot;ahead&quot;</i> and <i>&quot;flathead&quot;</i>, as well as <i>&quot;head&quot;</i>. If you type only 2-3 letters, there may be many words that contain that combination.";
+helps[2]="<b>Approximate</b> search will find words that are are close in spelling to the word you have input. This option is good for words that may be misspelled. For example, select &quot;1&quot; for a more precise search. (<i>&quot;sircus&quot;</i> finds <i>&quot;circus&quot;</i>) Select &quot;3&quot; for a more tolerant search; but this will find many more words.(For example, <i>&quot;cirkis&quot;</i> will find <i>&quot;circus&quot;</i> along with 50+ other words.) Select &quot;2&quot; for moderate precision and moderate tolerance of errors.";
+helps[3]="<b>Spawn</b>: If checked, any site you select from the navigation menu will be opened in a new browser window. If unchecked, site will open in an existing browser window.";
+
+
+</script>
+
+        <META NAME="GENERATOR" Content="Visual Page 2.0 for Windows - Trial Version">
+        <TITLE>WEDT Remote</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#CCCCFF">
+
+<FORM METHOD="GET" name="queryform" onSubmit="result();return false">
+<P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+        <TR>
+                <TD WIDTH="50%" VALIGN="BOTTOM"  NOWRAP><B><FONT SIZE="2" COLOR="#660099" FACE="Arial, Helvetica">QUERY:</FONT></B> <INPUT TYPE="TEXT" NAME="word" SIZE="10">
+                        
+                        <SELECT NAME="queryhistory" onChange="document.queryform.word.value=document.queryform.queryhistory.options[document.queryform.queryhistory.selectedIndex].value">
+                        <OPTION value>Lookup History</OPTION>
+                        </SELECT>
+ <INPUT TYPE="SUBMIT" NAME="subquery" VALUE="Search"></TD>
+        </TR>
+</TABLE>
+
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="100%">
+        <TR>
+                <TD WIDTH="9%" ALIGN="LEFT" VALIGN="TOP">
+                        <P>&nbsp;
+                </TD>
+                <TD WIDTH="9%" VALIGN="TOP"  NOWRAP><A HREF="" onClick="help('exact');return false"><B><FONT SIZE="2" COLOR="#660099" FACE="Arial, Helvetica">Exact</FONT></B></A><BR>
+                        <INPUT TYPE="RADIO" NAME="searchtype" VALUE="default"  CHECKED></TD>
+                <TD WIDTH="12%" ALIGN="LEFT" VALIGN="TOP">
+                        <P><A HREF="" onClick="help('float');return false"><B><FONT SIZE="2" COLOR="#660099" FACE="Arial, Helvetica">Floating</FONT><FONT
+                        SIZE="2" COLOR="#00AF00" FACE="Arial, Helvetica"> </FONT></B></A><BR>
+                        <INPUT TYPE="RADIO" NAME="searchtype" VALUE="float">
+                </TD>
+                <TD WIDTH="16%" ALIGN="LEFT" VALIGN="TOP">
+                        <P><A HREF="" onClick="help('approx');return false"><B><FONT SIZE="2" COLOR="#660099" FACE="Arial, Helvetica">Approximate</FONT></B></A><FONT
+                        COLOR="#000066"><BR>
+                        </FONT><FONT SIZE="1" COLOR="#000066" FACE="Arial, Helvetica">1<INPUT TYPE="RADIO" NAME="searchtype" VALUE="approx">
+                        <INPUT TYPE="RADIO" NAME="searchtype" VALUE="approx"> <INPUT TYPE="RADIO" NAME="searchtype" VALUE="approx">3</FONT>
+                </TD>
+                <TD WIDTH="49%"  NOWRAP>
+                        <P ALIGN="RIGHT"><B><FONT SIZE="1" COLOR="#AF0000" FACE="Apple Chancery"> </FONT><FONT SIZE="2" COLOR="#660099"
+                        FACE="Apple Chancery">W</FONT><FONT SIZE="1" COLOR="black" FACE="Apple Chancery">ordsmyth </FONT><FONT SIZE="2"
+                        COLOR="#660099" FACE="Apple Chancery">E</FONT><FONT SIZE="1" COLOR="black" FACE="Apple Chancery">nglish </FONT><FONT
+                        SIZE="2" COLOR="#660099" FACE="Apple Chancery">D</FONT><FONT SIZE="1" COLOR="black" FACE="Apple Chancery">ictionary-</FONT><FONT
+                        SIZE="2" COLOR="#660099" FACE="Apple Chancery">T</FONT><FONT SIZE="1" COLOR="black" FACE="Apple Chancery">hesauru</FONT><FONT
+                        SIZE="1" FACE="Apple Chancery">s</FONT><BR>
+                        <FONT SIZE="1" COLOR="#800000" FACE="Apple Chancery">The Educational</FONT><FONT SIZE="1" COLOR="#990066"> </FONT><FONT
+                        SIZE="1" COLOR="#800000" FACE="Apple Chancery">Dictionary</FONT></B>
+                </TD>
+<input TYPE="hidden" NAME="constraint" VALUE="1"></font>
+        
+                                                </TR>
+</TABLE>
+
+<HR ALIGN="CENTER">
+
+</FORM>
+
+</BODY>
+
+</HTML>

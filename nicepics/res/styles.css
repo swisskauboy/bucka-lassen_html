@@ -1,0 +1,91 @@
+body {
+	background-color: #101010;
+	margin: 0;
+	font-family: "Courier New", Courier, mono;
+}
+
+td {
+	 font-family: "Courier New", Courier, mono;
+}
+
+a {
+	text-decoration: none;
+	color=black;
+}
+
+.tab {
+	margin-left: 30px;
+	padding: 0 15px 0 15px;
+	font-size: 12px;
+	background-image:url(btn_off.gif);
+}
+
+.activetab {
+	font-weight: bold;
+	background-image:url(btn_on.gif)
+}
+
+.tabspace {
+	width: 6px;
+	height: 18px;
+}
+
+.tabmargin {
+	width: 36px;
+}
+
+#tabarea {
+	background-image:url(btnrow_bktile.jpg);
+}
+
+#leftarea {
+	width: 58px;
+	height: 432px;
+	background-image:url(left.jpg);
+}
+
+#thumbnailarea {
+	width: 566px;
+	height: 432px;
+	background-image:url(bktile.jpg);
+}
+
+#navarea {
+	width: 116px;
+	height: 432px;
+	background-image:url(bktile.jpg);
+}
+
+#imagearea {
+	width: 450px;
+	height: 432px;
+	background-image:url(bktile.jpg);
+}
+
+#rightarea {
+	width: 36px;
+	height: 432px;
+	background-image:url(right.jpg);
+}
+
+#bottomarea {
+	width: 660px;
+	height: 40px;
+	background-image:url(bottom.jpg);
+}
+
+#toparea {
+	width: 660px;
+	height: 60px;
+	background-image:url(top.jpg);
+}
+
+.comment {
+	color=#555555;
+}
+
+.footertext {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	color: #4E4E4E;;
+}
