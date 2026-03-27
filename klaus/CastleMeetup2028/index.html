@@ -84,6 +84,11 @@
       background: linear-gradient(90deg, #f8f3ea 0 50%, #0b7b61 50% 100%);
       border: 1px solid rgba(255, 255, 255, 0.45);
       box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
+      transition: background 0.25s ease;
+    }
+
+    .lang-switch[data-active="de"] {
+      background: linear-gradient(90deg, #0b7b61 0 50%, #f8f3ea 50% 100%);
     }
 
     .lang-switch button {
@@ -106,13 +111,19 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: #fff;
+      overflow: hidden;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;\n      font-weight: 700;\n      font-family: "Arial", sans-serif;\n      letter-spacing: 0.08em;\n      color: #1e1a16;
       box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12), 0 6px 12px rgba(0, 0, 0, 0.2);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .lang-switch .flag img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .lang-switch button[aria-pressed="true"] .flag {
@@ -228,6 +239,11 @@
 
     a:hover {
       text-decoration: underline;
+    }
+
+    .hero .card a {
+      color: #f9e9c8;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
     }
 
     .divider {
@@ -391,11 +407,11 @@
       <div class="hero-inner">
         <div class="lang-switch" role="group" aria-label="Language selector">
           <button type="button" data-lang-toggle="de" aria-pressed="false" title="Deutsch">
-            <span class="flag" aria-hidden="true">CH</span>
+            <span class="flag" aria-hidden="true"><img src="https://flagcdn.com/ch.svg" alt="" width="36" height="36"></span>
             <span class="sr-only">Deutsch</span>
           </button>
           <button type="button" data-lang-toggle="en" aria-pressed="true" title="English">
-            <span class="flag" aria-hidden="true">GB</span>
+            <span class="flag" aria-hidden="true"><img src="https://flagcdn.com/gb.svg" alt="" width="36" height="36"></span>
             <span class="sr-only">English</span>
           </button>
         </div>
@@ -418,7 +434,7 @@
             <strong>Booked Dates</strong>
             <ul class="booking-list">
               <li>30.7. – 5.8. 2028</li>
-              <li>29.7. – 4.8. 2029 (my 60th birthday)</li>
+              <li>29.7. – 4.8. 2029 (my 60<sup>th</sup> birthday)</li>
               <li>27.7. – 2.8. 2031</li>
             </ul>
           </div>
@@ -603,7 +619,7 @@
 
             <h3>Staying in the Castle</h3>
             <p>If you would like to stay in the castle itself, please let me know <strong>as soon as possible</strong> so I can reserve your spot. When not booked for events like ours here, the castle operates as a youth hostel. It has <strong>35 beds</strong> (mostly bunks) available across 6 dorm rooms (with 12, 8, 6, 4, 3, and 2 beds). <strong>Preference for staying in the castle will be given to those staying the full 6 nights.</strong></p>
-            <p>The total price for 6 nights in the castle will probably be around <strong>CHF / EUR / USD 200</strong>. Included are a pillow, duvet and linens. A towel you have to bring yourself or rent for CHF 3.</p>
+            <p>The total price for 6 nights in the castle will probably be around <strong>CHF 200</strong>. Included are a pillow, duvet and linens. A towel you have to bring yourself or rent for CHF 3.</p>
             <p>If you book a spot in the castle, do not pay just yet. You will receive an email with paying instructions later. Should you need to cancel after payment, and we can find a substitute (which is quite likely), you will receive a full refund.</p>
             <p>And yes, I know, everybody wants the 2- or 3-bed rooms, but unfortunately, that is not possible. So only ask for one if you <em>really</em> have a good reason.</p>
 
@@ -769,7 +785,7 @@
 
             <h3>Übernachten in der Burg</h3>
             <p>Wenn du in der Burg selbst übernachten möchtest, sag mir bitte <strong>so bald wie möglich</strong> Bescheid, damit ich deinen Platz reservieren kann. Wenn die Burg nicht für Veranstaltungen wie unsere gebucht ist, wird sie als Jugendherberge geführt. Es gibt <strong>35 Betten</strong> (meist Etagenbetten) in 6 Schlafsälen (mit 12, 8, 6, 4, 3 und 2 Betten). <strong>Bevorzugt werden Personen, die alle 6 Nächte bleiben.</strong></p>
-            <p>Der Gesamtpreis für 6 Nächte in der Burg wird voraussichtlich etwa <strong>CHF / EUR / USD 200</strong> betragen. Inklusive sind Kissen, Duvet und Bettwäsche. Ein Handtuch bringst du selbst mit oder mietest eines für CHF 3.</p>
+            <p>Der Gesamtpreis für 6 Nächte in der Burg wird voraussichtlich etwa <strong>CHF 200</strong> betragen. Inklusive sind Kissen, Duvet und Bettwäsche. Ein Handtuch bringst du selbst mit oder mietest eines für CHF 3.</p>
             <p>Wenn du einen Platz in der Burg buchst, bezahle bitte noch nicht. Du erhältst später eine E-Mail mit den Zahlungsinformationen. Falls du nach der Zahlung absagen musst und wir einen Ersatz finden (was sehr wahrscheinlich ist), bekommst du selbstverständlich eine volle Rückerstattung.</p>
             <p>Und ja, ich weiss, alle wollen die 2- oder 3-Bett-Zimmer, aber das ist leider nicht möglich. Frag also nur danach, wenn du <em>wirklich</em> einen guten Grund hast.</p>
 
@@ -920,6 +936,7 @@
 
     const buttons = document.querySelectorAll("[data-lang-toggle]");
     const sections = document.querySelectorAll(".lang");
+    const langSwitch = document.querySelector(".lang-switch");
 
     function setLanguage(lang) {
       sections.forEach((section) => {
@@ -929,6 +946,9 @@
         button.setAttribute("aria-pressed", button.dataset.langToggle === lang ? "true" : "false");
       });
       document.documentElement.setAttribute("lang", lang);
+      if (langSwitch) {
+        langSwitch.dataset.active = lang;
+      }
       const langInline = document.querySelectorAll(".lang-inline");
       langInline.forEach((node) => {
         node.classList.toggle("active", node.dataset.lang === lang);

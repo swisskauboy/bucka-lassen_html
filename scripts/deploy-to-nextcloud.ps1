@@ -17,9 +17,12 @@ $ExcludeDirs = @(
   'wip',
   'archive',
   '_archive',
-  'scripts',
   '.claude',
   '.codex'
+)
+
+$ExcludeRootDirs = @(
+  'scripts'
 )
 
 $ExcludeFiles = @(
@@ -38,7 +41,9 @@ if (-not (Test-Path -LiteralPath $Destination)) {
   New-Item -ItemType Directory -Path $Destination | Out-Null
 }
 
-$xd = $ExcludeDirs
+$xd = @()
+$xd += $ExcludeDirs
+$xd += $ExcludeRootDirs | ForEach-Object { Join-Path $Source $_ }
 $xf = $ExcludeFiles
 
 $robocopyArgs = @(
@@ -68,6 +73,12 @@ if (Test-Path -LiteralPath $Destination) {
     $excludedDirMatches | Select-Object -ExpandProperty FullName | ForEach-Object { Write-Warning "  $_" }
   }
 
+  $excludedRootDirs = $ExcludeRootDirs | ForEach-Object { Join-Path $Destination $_ } | Where-Object { Test-Path -LiteralPath $_ }
+  if ($excludedRootDirs) {
+    Write-Warning "Excluded root directories exist in destination (review/remove if desired):"
+    $excludedRootDirs | ForEach-Object { Write-Warning "  $_" }
+  }
+
   # Report excluded files that exist in the destination (not deleted by /XF)
   $excludedFileMatches = Get-ChildItem -LiteralPath $Destination -File -Recurse -Force -ErrorAction SilentlyContinue |
     Where-Object { $name = $_.Name; $ExcludeFiles | Where-Object { $name -like $_ } }
@@ -85,4 +96,3 @@ if ($code -le 7) {
 
 Write-Error "Deploy failed (robocopy exit code $code)."
 exit $code
-
