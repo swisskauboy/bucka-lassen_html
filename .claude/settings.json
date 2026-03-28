@@ -19,7 +19,14 @@
       "Bash(mv Leaving_the_Road_Behind.jpg 04-Leaving_the_Road_Behind.jpg)",
       "Bash(mv Shotover.jpg 05-Shotover.jpg)",
       "Bash(rm -f 20dollars.gif BackgroundWorld.jpg BrushStripe.gif GlobeBW.gif GlobeMini.gif MeetUs.gif afraid.gif bottle.gif briefcase.gif camera_i.gif constnew.gif construction-bar.gif construction.gif devil.gif dollar.gif dollar2.gif food.gif globe2.gif globe3.gif luggage.gif luggage2.gif money.gif new.gif pers.gif smiley.gif smiley2.gif tools.gif u_constr.gif uc.gif under.gif undrcons.gif usa.gif)",
-      "Bash(rm -rf bikes)"
+      "Bash(rm -rf bikes)",
+      "Bash(mv touring:*)",
+      "Bash(mv touring_new touring)",
+      "Bash(mv touring_old touring_old_backup)",
+      "Bash(rm -rf touring_original)",
+      "Bash(cp -r touring touring_original)",
+      "Bash(rm -rf touring/*)",
+      "Bash(cp -r touring_new/* touring/)"
     ],
     "additionalDirectories": [
       "d:\\repos\\bucka-lassen_html\\nicepics\\slides"
