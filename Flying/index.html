@@ -1,104 +1,354 @@
-<html>
-  <title> Flying with Klaus </title>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flying with Klaus</title>
+    <style>
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        padding: 2rem 1rem;
+        background: #d6d0c4;
+        font-family: Georgia, serif;
+        color: #222;
+        line-height: 1.6;
+      }
+
+      .page {
+        max-width: 860px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.88);
+        border-radius: 6px;
+        padding: 2.5rem 3rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+      }
+
+      h1 {
+        font-size: 2rem;
+        font-weight: normal;
+        margin: 0 0 2rem;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 0.8rem;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin: 2rem 0 0.6rem;
+        color: #444;
+      }
+
+      ul {
+        margin: 0 0 0.5rem;
+        padding-left: 1.4rem;
+      }
+
+      li {
+        margin: 0.4rem 0;
+      }
+
+      a { color: #7a3b00; }
+      a:visited { color: #4a2200; }
+      a:hover { color: #c05000; }
+
+      .toc {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.8rem;
+      }
+
+      .toc a {
+        color: #7a3b00;
+        text-decoration: none;
+        font-size: 0.75rem;
+        border: 1px solid #c8a86b;
+        border-radius: 2rem;
+        padding: 0.25rem 0.8rem;
+        background: #fdf8f0;
+        transition: background 0.15s, color 0.15s;
+      }
+
+      .toc a:hover {
+        background: #7a3b00;
+        color: #fff;
+      }
+
+      li.important {
+        background: #fff8e6;
+        border-left: 3px solid #e6a800;
+        margin-left: -1rem;
+        padding: 0.3rem 0.5rem 0.3rem 0.8rem;
+        border-radius: 0 3px 3px 0;
+        list-style-position: inside;
+      }
+
+      .map-wrap {
+        margin: 1rem 0;
+      }
+
+      .map-wrap iframe {
+        width: 100%;
+        max-width: 640px;
+        height: 400px;
+        border: none;
+        border-radius: 4px;
+      }
+
+      .photo-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.6rem;
+        margin: 1rem 0;
+      }
+
+      .photo-grid img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 3px;
+        display: block;
+        cursor: pointer;
+        transition: opacity 0.15s;
+      }
+
+      .photo-grid img:hover {
+        opacity: 0.85;
+      }
+
+      /* Lightbox */
+      #lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.88);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #lightbox.open {
+        display: flex;
+      }
+
+      #lightbox img {
+        max-width: 92vw;
+        max-height: 92vh;
+        border-radius: 4px;
+        box-shadow: 0 4px 32px rgba(0,0,0,0.6);
+      }
+
+      #lightbox-close {
+        position: absolute;
+        top: 1rem;
+        right: 1.4rem;
+        color: #fff;
+        font-size: 2.2rem;
+        line-height: 1;
+        cursor: pointer;
+        user-select: none;
+        opacity: 0.8;
+      }
+
+      #lightbox-close:hover {
+        opacity: 1;
+      }
+
+      #lightbox-prev, #lightbox-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #fff;
+        font-size: 2.5rem;
+        line-height: 1;
+        cursor: pointer;
+        user-select: none;
+        padding: 0.5rem 1rem;
+        opacity: 0.7;
+      }
+
+      #lightbox-prev:hover, #lightbox-next:hover {
+        opacity: 1;
+      }
+
+      #lightbox-prev { left: 0.5rem; }
+      #lightbox-next { right: 0.5rem; }
+
+      .video-wrap {
+        margin: 1.5rem 0 0.5rem;
+      }
+
+      .video-wrap video {
+        width: 100%;
+        max-width: 640px;
+        border-radius: 4px;
+        display: block;
+      }
+
+      .video-wrap p {
+        margin: 0.5rem 0 0;
+      }
+
+      @media (max-width: 600px) {
+        .page { padding: 1.5rem 1.2rem; }
+        .photo-grid { grid-template-columns: repeat(2, 1fr); }
+        .photo-grid img { height: 130px; }
+      }
+    </style>
+  </head>
   <body>
-    <h1> Flying with Klaus </h1>
+    <div class="page">
+      <h1>Flying with Klaus</h1>
 
-    <h2> Things to bring </h2>
-    <ul>
-      <li> <b>Camera</b> / video camera / GoPro / etc.
-      <li> Something to <b>drink</b> / snack (there is no restaurant at the airport) / the on-board stewardess has quit due to bad working conditions, she said
-      <li> Not so tall people should consider bringing a <b>pillow</b> they can sit on - especially when they will be sitting in the co-pilots seat in front
-    </ul>
+      <nav class="toc">
+        <a href="#know">Preparation</a>
+        <a href="#bring">Things to bring</a>
+        <a href="#where">Where to fly</a>
+        <a href="#airport">How to get to the airport</a>
+        <a href="#webcams">Webcams</a>
+        <a href="#faq">FAQ</a>
+        <a href="#photos">Pictures &amp; videos</a>
+      </nav>
 
-    <h2> Things to do and know </h2>
-    <ul>
-      <li> Please be on time (as agreed). The plane is reserved only for a specific block of time and there are certain other constraints that might mean we can't go flying at all, should you arrive late.
-      <li> Remember to go to the <b>toilet</b> before we depart (I will try to remember to remind you of this, but should I forget you have been warned ;-)
-      <li> Send Klaus a list of the <b>passengers and their weights</b> in advance. He needs this to do some calculations regarding take-off and landing distance which are influenced by the total weight of the plane - important for safety. Don't bring heavy things you don't need in the plane
-      <li> For Switzerland 330 per hour (or rather 5.50/minute) is quite inexpensive for a 4-seater plane (pilot + 3 passengers). The more passengers, the lower the price per person. With three passengers, everybody only pays about CHF 1.85 per minute or CHF 55 for the shortes possible flight of 30 minutes.
-    </ul>
-    
-    <h2> Where to go </h2>
-    <ul>
-      <li> We can go anywhere (almost) - the choice is yours and the sky is the limit ;-). Just give Klaus a list of place (preferably with GPS coordinates) of places you would like to see from above. This could be your house, your work, childhood memories, your favorite hiking or skiing area, or just about anything that you imagine would look cool from above.
-      <li> We don't <em>have to</em> plan up front where we go, we can also make up where we go (and we can to some extent also change our minds) once we are in the air
-      <li> However, some places lie within regulated airspaces (like most of the city of Z rich for instance) and if we want to fly over those spots, I will have to file a flight plan up front (need to know at least 24 hours before)
-      <li> Some <i>standard</i> routes I have done a lot of times over the years are (click map below to se details)
-        <ul>
-          <li> Red: Zug - Rigi - Luzern - Pilatus - B&uuml;rgenstock - <b>Lake-Lucerne</b> - Brunnen/Schwyz - Kleiner & Grosser Mythen - Einsiedeln - Lake Z&uuml;rich (30-45 minutes)
-          <li> Green: Zug - Rigi - Luzern - Pilatus - Sarnen - Interlaken - Eiger, M&ouml;nch, Jungfrau / <b>Jungfrau Joch</b> - Aletsch Glacier - Engelberg/Titlis - Kleiner & Grosser Mythen - Einsiedeln - Lake Z&uuml;rich (about 1h15)
-          <li> Blue: Zug - Rigi - Luzern - Pilatus - Sarnen - Interlaken - Eiger, M&ouml;nch, Jungfrau / Jungfrau Joch - Aletsch Glacier - Zermatt - <b>Matterhorn</b> - Italy - Locarno (possibly with landing, lunch, coffee, and/or ice creme) - Gotthard - Disentis - Kleiner & Grosser Mythen - Einsiedeln - Lake Z&uuml;rich (about 2h30)
-          <li> Black: Flying to <b>Gruyere</b> in the morning and spending some time there to see the castle, the famous cheese dairy and/or the Cailler chocolate factory (all within about 45 minutes by foot from the landing strip or 5 minutes by taxi). Passing by Interlaken and Eiger, M&ouml;nch & Jungfrau on the flight to (or back from) Gruyere
-        </ul>
-        <p>
-        <iframe src="https://www.google.com/maps/d/u/2/embed?mid=1Dv-m5cfo75UwSguRhWd5215Osfg" width="640" height="480"></iframe>
-    </ul>
+      <h2 id="know">Preparation</h2>
+      <ul>
+        <li class="important">Please <b>be on time</b> (as agreed). The plane is reserved only for a specific block of time and there are certain constraints that might mean we can't go flying at all should you arrive late.</li>
+        <li class="important">Remember to go to the <b>toilet</b> before we depart (I will try to remind you of this, but should I forget — you have been warned 😉)</li>
+        <li class="important">Send Klaus a list of the <b>passengers and their approximate weights</b> (don't lie) <b>preferably a week or more in advance</b>. He needs this to calculate take-off and landing distances, which are influenced by the total weight of the plane. Don't bring heavy things you don't need in the plane.</li>
+      </ul>
 
+      <h2 id="bring">Things to bring</h2>
+      <ul>
+        <li><b>Camera</b> / video camera / GoPro / etc.</li>
+        <li>Something to <b>drink</b> / snack (there is no restaurant at the airport — the on-board stewardess has unfortunately resigned due to bad working conditions, she said)</li>
+        <li>Not so tall people should consider bringing a <b>pillow</b> they can sit on — especially when sitting in the co-pilot's seat up front</li>
+      </ul>
 
-    <h2> How to get to the airport </h2>
-    <ul>
-      <li> Please note that some navigation systems might guide you to the wrong side (north) of the airport. Please study the map first and make sure you arrive at the correct place on the southern side of the runway.
-      <li> There is a "Do not enter" sign at the turn of from the main road (about halfways between Rifferswil and Kappel am Albis) towards the airport - ignore this and continue to the parking at the airport.
-      <p><iframe src="https://www.google.com/maps/d/u/0/embed?mid=zOrYjnBqnfgo.kC70DF4-ofC4" width="640" height="480"></iframe>
-    </ul>
+      <h2 id="where">Where to fly</h2>
+      <ul>
+        <li>We can go anywhere (almost) — the choice is yours and the sky is the limit 🙂. Just give Klaus a list of places (preferably with GPS coordinates) you would like to see from above: your house, work, childhood memories, a favourite hiking or skiing area, or anything you imagine would look cool from above.</li>
+        <li>We don't <em>have to</em> plan up front — we can also make it up as we go, and change our minds once in the air.</li>
+        <li>However, some places lie within regulated airspaces (like most of Zürich city). If we want to fly over those, I will have to file a flight plan at least 24 hours before.</li>
+        <li>Some <i>standard</i> routes I have flown many times (click the map to see details):
+          <ul>
+            <li><b style="color:#c00">Red:</b> Zug – Rigi – Luzern – Pilatus – Bürgenstock – <b>Lake Lucerne</b> – Brunnen/Schwyz – Kleiner &amp; Grosser Mythen – Einsiedeln – Lake Zürich (30–45 min)</li>
+            <li><b style="color:#2a7a2a">Green:</b> Zug – Rigi – Luzern – Pilatus – Sarnen – Interlaken – Eiger, Mönch, Jungfrau / <b>Jungfraujoch</b> – Aletsch Glacier – Engelberg/Titlis – Kleiner &amp; Grosser Mythen – Einsiedeln – Lake Zürich (~1h15)</li>
+            <li><b style="color:#1a52c2">Blue:</b> Zug – Rigi – Luzern – Pilatus – Sarnen – Interlaken – Eiger, Mönch, Jungfrau / Jungfraujoch – Aletsch Glacier – Zermatt – <b>Matterhorn</b> – Italy – Locarno (possibly with landing, lunch, coffee, and/or ice cream) – Gotthard – Disentis – Kleiner &amp; Grosser Mythen – Einsiedeln – Lake Zürich (~2h30)</li>
+            <li><b>Black:</b> Flying to <b>Gruyère</b> in the morning and spending time there to see the castle, the famous cheese dairy and/or the Cailler chocolate factory (all within ~45 min by foot or 5 min by taxi from the airstrip). Passing by Interlaken and Eiger, Mönch &amp; Jungfrau on the way.</li>
+          </ul>
+        </li>
+      </ul>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/d/u/2/embed?mid=1Dv-m5cfo75UwSguRhWd5215Osfg"></iframe>
+      </div>
 
-    <h2> Interesting webcams along some of my routes </h2>
-    <ul>
-      <li> <a href="https://fgho.roundshot.com/#/" target="_blank">Airport Hausen am Albis</a> (where we fly from)
-      <li> <a href="https://uetliberg.roundshot.com/" target="_blank">Uetliberg</a>
-      <li> <a href="https://rigi.roundshot.com/#/" target="_blank">Rigi</a>
-      <li> <a href="https://ruetliwiese.roundshot.com/#/" target="_blank">R&uuml;tliwiese</a>
-      <li> <a href="https://pilatus.roundshot.com/#/" target="_blank">Pilatus</a>
-      <li> <a href="https://sgv.roundshot.com/stadtluzern/#/" target="_blank">Luzern</a>
-      <li> <a href="https://kirchfeld.roundshot.com/#/" target="_blank">Horw</a>
-      <li> <a href="https://jungfrau.roundshot.com/top-of-europe-jungfrau-ostgrat/#/" target="_blank">Jungfraujoch</a>
-      <li> <a href="https://zbag.roundshot.com/matterhornglacierparadise/#/" target="_blank">Matterhorn</a>
-      <li> <a href="https://grimselwelt.roundshot.com/hospiz/#/" target="_blank">Grimsel</a>
-      <li> <a href="https://fuerenalp.roundshot.com/#/" target="_blank">F&uuml;renalp / Engelberg</a>
-      <li> <a href="https://andermatt-sedrun-disentis.roundshot.com/guetsch/#/" target="_blank">Andermatt: G&uuml;tsch</a>
-      <li> <a href="https://rotenfluebahn.roundshot.com/rotenflue/#/" target="_blank">Mythen</a>
-      <li> <a href="https://lagruyere.roundshot.com/#/" target="_blank">Gruy&egrave;re</a>
-      <li> <a href="https://www.roundshot.com/en/livecam-references.html/102" target="_blank">WORLD-WIDE MAP</a>
-    </ul>
+      <h2 id="airport">How to get to the airport</h2>
+      <ul>
+        <li class="important">Please note that some navigation systems might guide you to the wrong (north) side of the airport. Study the map first and make sure you arrive on the <b>southern side</b> of the runway.</li>
+        <li>There is a "Do not enter" sign at the turn-off from the main road (about halfway between Rifferswil and Kappel am Albis) towards the airport — ignore this and continue to the parking at the airport.</li>
+      </ul>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/d/embed?mid=1te7f7S7eFgSOGSVGfuDDU4Mtvck"></iframe>
+      </div>
 
-    <h2> Frequently Asked Questions </h2>
-    <ul>
-      <li> Klaus, is this your <b>own plane</b>? => No, it isn't. I'm a member of a club where plane owners make their bird available. I'm just renting this (and other) planes
-      <li> Does it <b>cost extra to land somewhere halfways</b>? => No, it doesn't. Well, there is a landing fee that is to be paid, but I (Klaus) pay that, so it won't cost extra. Landing and starting though probably adds about 5 minutes to the flight, compared to if we just flew over the airstrip instead without landing there. While the plane is on the ground though, it doesn't cost anything. You only pay for time in the air (not even time the engine is running, as long as it is on ground).
-      <li> What <b>kind of plane</b> are we flying? => It is a low-winged American built <b>Piper Archer II</b> seating the pilot (me) and three passengers; registration <b>HB-PGM</b>
-      <li> What is the <b>price per passenger</b>? => Well, that depends on how many passengers there are. With only one passenger, it's CHF 330 per hour (= 5.50/minute); with two passengers, it's CHF 165 per person per hour (= 2.75/minute); with three passengers, it's CHF 110 per person per hour (= 1.85/minute).
-      <li> You want <b>my weight</b>, but I'm not comfortable sharing that, what do I do? => There is no way around it, for safety reasons and by law, I have to do a weight & balance calculation. I won't share your weight with others, of course. The maximum the three passengers may weigh together is approx. 260 kg.
-      <li> How can we best <b>prepare for this flight</b>? => Have a think about who is going to sit in the front. It is the best of the passenger seats, so the person taking that seat could also be asked to pay a bit extra. Say CHF 2.00/minute while the rear seat passengers both pay 1.75/minute for a total of the 5.50/minute.
-      <li> What influence does the <b>weather</b> have? <b>Weather is <em>everything</em></b>! Sometimes we're lucky and we have perfect weather for flying. Few clouds, no turbulence, not too hot. At other times the decision is also easy to no go flying because of far too many clouds, rain or heavy winds. And quite often we will be confronted with something in between. Some clouds which allow us to get airborn but also will prevent us from flying a strict route we might have planed for. Then we have to "wing it" and fly what and where we ca. OR, we cancel the flight and go at another time. I'm only certified for flying VFR (Visual Flight Rules), which means, I can't fly <em>through</em> clouds.
-      <li> <b>When do we decide</b> on whether we go flying or not? This is all dependent on the weather. Sometimes we can make a definite decision already one or even two days before. Mostly though, we will leave the decision to as late as possible, which generally means on the day itself. If you, for whatever reason, need to know the decsion earlier, let Klaus know. Even when we already are in the air, there might be circumstances that mean Klaus will turn around and call it of. Safety first. Weather forecasts are just that, forecasts - nothing else.
-      <li> Is the pilot paying for the rental of the plane as well? Yes, he is. CHF 330/h isn't the full price. There is a yearly club fee, landing fees, license and medical fees, plus a whole lot of other expenses for maps, apps, weather subscriptions, etc. Your pilot is covering all of that. The total price for the plane, everything included, is probably closer to somewhere between CHF 400/h and CHF 450/h.
-    </ul>
+      <h2 id="webcams">Interesting webcams along some of my routes</h2>
+      <ul style="columns: 3; column-gap: 2rem;">
+        <li><a href="https://fgho.roundshot.com/#/" target="_blank">Airport Hausen am Albis</a> (where we fly from)</li>
+        <li><a href="https://uetliberg.roundshot.com/" target="_blank">Uetliberg</a></li>
+        <li><a href="https://rigi.roundshot.com/#/" target="_blank">Rigi</a></li>
+        <li><a href="https://ruetliwiese.roundshot.com/#/" target="_blank">Rütliwiese</a></li>
+        <li><a href="https://pilatus.roundshot.com/#/" target="_blank">Pilatus</a></li>
+        <li><a href="https://sgv.roundshot.com/stadtluzern/#/" target="_blank">Luzern</a></li>
+        <li><a href="https://kirchfeld.roundshot.com/#/" target="_blank">Horw</a></li>
+        <li><a href="https://jungfrau.roundshot.com/top-of-europe-jungfrau-ostgrat/#/" target="_blank">Jungfraujoch</a></li>
+        <li><a href="https://zbag.roundshot.com/matterhornglacierparadise/#/" target="_blank">Matterhorn</a></li>
+        <li><a href="https://grimselwelt.roundshot.com/hospiz/#/" target="_blank">Grimsel</a></li>
+        <li><a href="https://fuerenalp.roundshot.com/#/" target="_blank">Fürenalp / Engelberg</a></li>
+        <li><a href="https://andermatt-sedrun-disentis.roundshot.com/guetsch/#/" target="_blank">Andermatt: Gütsch</a></li>
+        <li><a href="https://rotenfluebahn.roundshot.com/rotenflue/#/" target="_blank">Mythen</a></li>
+        <li><a href="https://lagruyere.roundshot.com/#/" target="_blank">Gruyère</a></li>
+      </ul>
 
-    <h2> Pictures and Videos of previous flights </h2>
-    <img src="PicturesAndVideos/Rigi.jpg"/> <br>
-<p>
-    <img src="PicturesAndVideos/Pilatus.jpg"/> <br>
-<p>
-    <img src="PicturesAndVideos/Titlis 1.jpg"/> <br>
-<p>
-    <img src="PicturesAndVideos/Titlis 2.jpg"/> <br>
-<p>
-    <img src="PicturesAndVideos/Grosser Mythen.jpg"/> <br>
-<p>
-    <img src="PicturesAndVideos/Lauerzersee.jpg"/> <br>
-<p>
-    <img src="PicturesAndVideos/Zuerich See.jpg"/> <br>
-<p>
-    <img src="PicturesAndVideos/Hausen am Albis.jpg"/>
-    <p>
-    <video controls>
-      <source src="PicturesAndVideos/Pilatus.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <p>
+      <h2 id="faq">Frequently Asked Questions</h2>
+      <ul>
+        <li><b>Is this your own plane?</b> — No. I'm a member of a club where plane owners make their aircraft available for rental.</li>
+        <li><b>Does it cost extra to land somewhere halfway?</b> — No. There is a landing fee, but I (Klaus) pay that. While the plane is on the ground it doesn't cost anything — you only pay for time in the air.</li>
+        <li><b>What kind of plane?</b> — A low-winged American-built <b>Piper Archer II</b>, seating the pilot and three passengers; registration <b>HB-PGM</b>.</li>
+        <li><b>What is the price per passenger?</b> — The more passengers, the lower the price per person. 1 passenger: CHF 330/h (5.50/min); 2 passengers: CHF 165/person/h (2.75/min); 3 passengers: CHF 110/person/h (1.85/min) — or about CHF 55 for the shortest possible flight of 30 minutes. For Switzerland, that's quite reasonable for a 4-seater. Note that the front passenger seat is slightly better (more view), so that person could pay a little extra: say CHF 2.00/min for the front seat and CHF 1.75/min each for the rear seats.</li>
+        <li><b>Is the pilot also paying for the plane rental?</b> — Yes. CHF 330/h isn't the full price. Add yearly club fees, landing fees, license and medical fees, maps, apps, weather subscriptions, etc. The real total is probably closer to CHF 400–450/h.</li>
+        <li><b>You want my weight, but I'm not comfortable sharing that.</b> — There is no way around it. For safety reasons and by law I have to do a weight &amp; balance calculation. I won't share your weight with others. The maximum the passengers may weigh together is approx. 260 kg.</li>
+        <li><b>How can we best prepare?</b> — Have a think about who sits in front before you arrive, so we don't spend the first 10 minutes on the tarmac debating it 😄. The front seat has slightly better views.</li>
+        <li class="important"><b>What influence does the weather have?</b> — <b>Weather is <em>everything</em>!</b> Sometimes the decision is easy (perfect day or clearly impossible). Often it's somewhere in between, and we may have to improvise or postpone. I'm only certified for VFR (Visual Flight Rules), meaning I may not fly <em>through</em> clouds.</li>
+        <li class="important"><b>When do we decide whether we go or not?</b> — Depending on the weather, sometimes already a day or two before, but generally on the day itself. Even once airborne, circumstances might require us to turn back. Safety first — forecasts are just that.</li>
+      </ul>
 
-And another video on <a href="https://www.youtube.com/watch?v=PJkXJRdj65k">YouTube</a>
+      <h2 id="photos">Pictures and videos of previous flights</h2>
 
+      <div class="photo-grid">
+        <img src="PicturesAndVideos/Rigi.jpg" alt="Rigi">
+        <img src="PicturesAndVideos/Pilatus.jpg" alt="Pilatus">
+        <img src="PicturesAndVideos/Titlis 1.jpg" alt="Titlis">
+        <img src="PicturesAndVideos/Titlis 2.jpg" alt="Titlis 2">
+        <img src="PicturesAndVideos/Grosser Mythen.jpg" alt="Grosser Mythen">
+        <img src="PicturesAndVideos/Lauerzersee.jpg" alt="Lauerzersee">
+        <img src="PicturesAndVideos/Zuerich See.jpg" alt="Zürichsee">
+        <img src="PicturesAndVideos/Hausen am Albis.jpg" alt="Hausen am Albis">
+      </div>
+
+      <div class="video-wrap">
+        <video controls>
+          <source src="PicturesAndVideos/Pilatus.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p>Also on <a href="https://www.youtube.com/watch?v=PJkXJRdj65k" target="_blank">YouTube</a>.</p>
+      </div>
+
+      <p style="margin-top:2.5rem; font-size:0.8rem; color:#999; border-top:1px solid #ddd; padding-top:0.8rem;">Last updated: March 2026</p>
+    </div>
+    <div id="lightbox">
+      <span id="lightbox-close">&times;</span>
+      <span id="lightbox-prev">&#8249;</span>
+      <img id="lightbox-img" src="" alt="">
+      <span id="lightbox-next">&#8250;</span>
+    </div>
+
+    <script>
+      const images = Array.from(document.querySelectorAll('.photo-grid img'));
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
+      let current = 0;
+
+      function open(index) {
+        current = index;
+        lbImg.src = images[current].src;
+        lbImg.alt = images[current].alt;
+        lightbox.classList.add('open');
+      }
+
+      function close() {
+        lightbox.classList.remove('open');
+        lbImg.src = '';
+      }
+
+      function navigate(dir) {
+        current = (current + dir + images.length) % images.length;
+        lbImg.src = images[current].src;
+        lbImg.alt = images[current].alt;
+      }
+
+      images.forEach((img, i) => img.addEventListener('click', () => open(i)));
+      document.getElementById('lightbox-close').addEventListener('click', close);
+      document.getElementById('lightbox-prev').addEventListener('click', () => navigate(-1));
+      document.getElementById('lightbox-next').addEventListener('click', () => navigate(1));
+      lightbox.addEventListener('click', e => { if (e.target === lightbox) close(); });
+      document.addEventListener('keydown', e => {
+        if (!lightbox.classList.contains('open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') navigate(-1);
+        if (e.key === 'ArrowRight') navigate(1);
+      });
+    </script>
   </body>
-
 </html>
