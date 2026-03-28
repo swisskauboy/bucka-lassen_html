@@ -21,8 +21,20 @@
         margin: 0 auto;
         background: rgba(255, 255, 255, 0.88);
         border-radius: 6px;
-        padding: 2.5rem 3rem;
+        overflow: hidden;
         box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+      }
+
+      .hero {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        object-position: center 60%;
+        display: block;
+      }
+
+      .page-content {
+        padding: 2.5rem 3rem;
       }
 
       h1 {
@@ -192,7 +204,8 @@
       }
 
       @media (max-width: 600px) {
-        .page { padding: 1.5rem 1.2rem; }
+        .page-content { padding: 1.5rem 1.2rem; }
+        .hero { height: 180px; }
         .photo-grid { grid-template-columns: repeat(2, 1fr); }
         .photo-grid img { height: 130px; }
       }
@@ -200,6 +213,8 @@
   </head>
   <body>
     <div class="page">
+      <img class="hero" src="PicturesAndVideos/Rigi.jpg" alt="View from the plane over the Swiss Alps">
+      <div class="page-content">
       <h1>Flying with Klaus</h1>
 
       <nav class="toc">
@@ -306,6 +321,7 @@
       </div>
 
       <p style="margin-top:2.5rem; font-size:0.8rem; color:#999; border-top:1px solid #ddd; padding-top:0.8rem;">Last updated: March 2026</p>
+      </div>
     </div>
     <div id="lightbox">
       <span id="lightbox-close">&times;</span>
