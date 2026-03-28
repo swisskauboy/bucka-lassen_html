@@ -1,135 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-  <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    
-    <meta name="Generator" content="iWeb 1.1.2" />
-    <title>Getting there</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="Getting%20there_files/Getting%20there.css" /><script type="text/javascript" src="Getting%20there_files/Getting%20there.js"></script>
-
-    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA0MjqY2MyUBCA9o_Q24dzgxRkX9FdXNTSJ8II70hJzalc38MbnxSFOrvselK6WBGfIwP5n9ZwyToW8w"      type="text/javascript"></script>    <script type="text/javascript">    //<![CDATA[    function load() {      if (GBrowserIsCompatible()) {	var map = new GMap2(document.getElementById("map"));
-	map.addControl(new GLargeMapControl());	map.addControl(new GMapTypeControl()); 
-	map.checkResize();
-
-	var ferieCenter = new GLatLng(55.4955, 9.7039); 
-	var kastrup = new GLatLng(55.620526, 12.649457);
-	var kirke = new GLatLng(55.457393, 9.889406);
-	var hamburg = new GLatLng(53.64952199454264, 10.008544921875);
-	var center = new GLatLng(55, 11.0);
-
-        map.setCenter(center, 7); 
-
-  	map.addOverlay(new GMarker(ferieCenter));   	map.addOverlay(new GMarker(kirke));
-  	map.addOverlay(new GMarker(kastrup));
-  	map.addOverlay(new GMarker(hamburg));
-	
-	// Kastrup info
-	var kastrupInfo = [  new GInfoWindowTab("Adresse", "Copenhagen Airport<br><a href='http://www.cph.dk' target=link>www.cph.dk</a>") ];  	var kastrupMarker = new GMarker(kastrup);
-	GEvent.addListener(kastrupMarker, "click", function() {  kastrupMarker.openInfoWindowTabsHtml(kastrupInfo);});  	map.addOverlay(kastrupMarker);
-	//kastrupMarker.openInfoWindowTabsHtml(kastrupInfo);
-  		// Kirke info
-	var kirkeInfo = [  new GInfoWindowTab("Adresse", "Nørre Aaby Church<br>Præstegårdsvej 11<br>5580 Nørre Aaby") ];  	var kirkeMarker = new GMarker(kirke);
-	GEvent.addListener(kirkeMarker, "click", function() {  kirkeMarker.openInfoWindowTabsHtml(kirkeInfo);});  	map.addOverlay(kirkeMarker);
-	//kirkeMarker.openInfoWindowTabsHtml(kirkeInfo);
-  	  	// FerieCenter info  	var ferieCenterInfo = [  new GInfoWindowTab("Adresse", "FolkeFerie.dk - Middelfart<br />Oddevejen 8<br />5500 Middelfart")]; //,  
-//	new GInfoWindowTab("Kontakt", "Tlf.: 64 41 06 01<br /><a href='mailto:middelfart@folkeferie.dk'>Send en mail til Middelfart Feriecenter</a>")];  	var marker = new GMarker(ferieCenter);
-	GEvent.addListener(marker, "click", function() {  marker.openInfoWindowTabsHtml(ferieCenterInfo);});  	map.addOverlay(marker);
-	// marker.openInfoWindowTabsHtml(ferieCenterInfo);
-				
-	// Hamburg info
-	var hamburgInfo = [  new GInfoWindowTab("Adresse", "Hamburg Airport<br><a href='http://www.ham.airport.de/index_en.phtml' target=link>link</a>") ];  	var hamburgMarker = new GMarker(hamburg);
-	GEvent.addListener(hamburgMarker, "click", function() {  hamburgMarker.openInfoWindowTabsHtml(hamburgInfo);});  	map.addOverlay(hamburgMarker);
-	//hamburgMarker.openInfoWindowTabsHtml(hamburgInfo);
-  	      }    }    //]]>    </script>
-
-  </head>
-  <body style="background: #4d4d4d; margin: 0pt; " 
-onload="onPageLoad();load()" onunload="GUnload()">
-    <div style="text-align: center; ">
-      <div style="margin-bottom: 0px; margin-left: auto; margin-right: auto; margin-top: 0px; overflow: hidden; position: relative;  background: transparent url(Images/pinstripe_bk_tile3-51.jpg) repeat scroll top left; text-align: left; width: 700px; " id="body_content">
-        <div style="float: left; height: 0px; line-height: 0px; margin-left: 0px; position: relative; width: 700px; z-index: 10; " id="header_layer">
-          <div style="height: 0px; line-height: 0px; " class="tinyText"> </div>
-        </div>
-        <div style="height: 75px; margin-left: 0px; position: relative; width: 700px; z-index: 0; " id="nav_layer">
-          <div style="height: 0px; line-height: 0px; " class="tinyText"> </div>
-          <div style="background: url(Getting%20there_files/navbar_background.png); height: 75px; left: 0px; position: absolute; top: 0px; width: 700px; z-index: 1; ">
-            <div style="background: transparent url(Getting%20there_files/navbar_separator_0.png) no-repeat scroll center; height: 25px; left: 137px; position: absolute; top: 22px; width: 22px; z-index: 1; "></div>
-            <div style="background: transparent url(Getting%20there_files/navbar_separator_1.png) no-repeat scroll center; height: 25px; left: 244px; position: absolute; top: 22px; width: 22px; z-index: 1; "></div>
-            <div style="background: transparent url(Getting%20there_files/navbar_separator_2.png) no-repeat scroll center; height: 25px; left: 333px; position: absolute; top: 22px; width: 22px; z-index: 1; "></div>
-            <div style="background: transparent url(Getting%20there_files/navbar_separator_3.png) no-repeat scroll center; height: 25px; left: 486px; position: absolute; top: 22px; width: 22px; z-index: 1; "></div>
-            <div style="background: transparent url(Getting%20there_files/navbar_active.png) no-repeat scroll center; height: 33px; left: 351px; position: absolute; top: 18px; width: 139px; z-index: 1; "></div>
-            <div style="background: transparent url(Getting%20there_files/navbar_0_normal.png) no-repeat scroll center; height: 35px; left: 45px; position: absolute; top: 16px; width: 96px; z-index: 1; " id="navbar_0_normal"></div>
-            <div style="background: transparent url(Getting%20there_files/navbar_0_rollover.png) no-repeat scroll center; height: 35px; left: 45px; position: absolute; top: 16px; visibility: hidden; width: 96px; z-index: 1; " id="navbar_0_rollover"></div>
-            <a style="display: block; height: 25px; left: 50px; position: absolute; top: 22px; width: 87px; z-index: 2; " onmouseout="NBmouseout('0');" href="Welcome.html" onmouseover="NBmouseover('0');"></a>
-            <div style="background: transparent url(Getting%20there_files/navbar_1_normal.png) no-repeat scroll center; height: 35px; left: 154px; position: absolute; top: 16px; width: 94px; z-index: 1; " id="navbar_1_normal"></div>
-            <div style="background: transparent url(Getting%20there_files/navbar_1_rollover.png) no-repeat scroll center; height: 35px; left: 154px; position: absolute; top: 16px; visibility: hidden; width: 94px; z-index: 1; " id="navbar_1_rollover"></div>
-            <a style="display: block; height: 25px; left: 159px; position: absolute; top: 22px; width: 85px; z-index: 2; " onmouseout="NBmouseout('1');" href="Wedding.html" onmouseover="NBmouseover('1');"></a>
-            <div style="background: transparent url(Getting%20there_files/navbar_2_normal.png) no-repeat scroll center; height: 35px; left: 261px; position: absolute; top: 16px; width: 76px; z-index: 1; " id="navbar_2_normal"></div>
-            <div style="background: transparent url(Getting%20there_files/navbar_2_rollover.png) no-repeat scroll center; height: 35px; left: 261px; position: absolute; top: 16px; visibility: hidden; width: 76px; z-index: 1; " id="navbar_2_rollover"></div>
-            <a style="display: block; height: 25px; left: 266px; position: absolute; top: 22px; width: 67px; z-index: 2; " onmouseout="NBmouseout('2');" href="Guests.html" onmouseover="NBmouseover('2');"></a>
-            <div style="background: transparent url(Getting%20there_files/navbar_3_normal.png) no-repeat scroll center; height: 35px; left: 503px; position: absolute; top: 16px; width: 55px; z-index: 1; " id="navbar_3_normal"></div>
-            <div style="background: transparent url(Getting%20there_files/navbar_3_rollover.png) no-repeat scroll center; height: 35px; left: 503px; position: absolute; top: 16px; visibility: hidden; width: 55px; z-index: 1; " id="navbar_3_rollover"></div>
-            <a style="display: block; height: 25px; left: 508px; position: absolute; top: 22px; width: 46px; z-index: 2; " onmouseout="NBmouseout('3');" href="Kids.html" onmouseover="NBmouseover('3');"></a>
-            <div style="background: transparent url(Getting%20there_files/navbar_4_normal.png) no-repeat scroll center; height: 35px; left: 45px; position: absolute; top: 44px; width: 107px; z-index: 1; " id="navbar_4_normal"></div>
-            <div style="background: transparent url(Getting%20there_files/navbar_4_rollover.png) no-repeat scroll center; height: 35px; left: 45px; position: absolute; top: 44px; visibility: hidden; width: 107px; z-index: 1; " id="navbar_4_rollover"></div>
-            <a style="display: block; height: 25px; left: 50px; position: absolute; top: 50px; width: 98px; z-index: 2; " onmouseout="NBmouseout('4');" href="Invitation.html" onmouseover="NBmouseover('4');"></a>
-          </div>
-        </div>
-        <div style="margin-left: 0px; position: relative; width: 700px; z-index: 5; " id="body_layer">
-          <div style="height: 0px; line-height: 0px; " class="tinyText"> </div>
-          <div style="height: 1px; line-height: 1px; " class="tinyText"> </div>
-          <div class="graphic_generic_body_textbox_style_default" style="margin-left: 309px; margin-top: 23px; position: relative; width: 36px; z-index: 1; ">
-            <div style="height: 18px; line-height: 18px; " class="tinyText"> </div>
-          </div>
-          
-
-<img src="Getting%20there_files/shapeimage_1.jpg" alt="" style="height: 1px; left: 54px; position: absolute; top: 0px; width: 592px; z-index: 1; " />
-
-
-          <div class="graphic_generic_title_textbox_style_default" style="height: 54px; left: 50px; position: absolute; top: 10px; width: 600px; z-index: 1; " id="id1">
-            <div>
-              <div class="graphic_shape_layout_style_default">
-                <div class="paragraph Title" style="line-height: 46px; padding-bottom: 0pt; padding-top: 0pt; ">Getting There</div>
-              </div>
-            </div>
-          </div>
-          
-
-
-          <div class="graphic_textbox_style_default" style="height: 186px; left: 55px; position: absolute; top: 76px; width: 593px; z-index: 1; " id="id2">
-            <div>
-              <div class="graphic_textbox_layout_style_default">
-                <div class="paragraph Body_Medium" style="line-height: 20px; padding-top: 0pt; "><span style="line-height: 20px; text-decoration: underline; ">From Copenhagen Airport</span><span> (</span><a href="http://www.cph.dk/CPH/UK/MAIN/" title="http://www.cph.dk/CPH/UK/MAIN/" style="line-height: 20px; opacity: 1.00; ">www.cph.dk</a><span>):</span></div>
-                <ol>
-                  <li style="line-height: 20px; margin-left: 20px; padding-left: 0px; text-indent: -20px; " value="1">
-                    <div class="paragraph Body_Medium" style="line-height: 20px; margin-bottom: 0px; margin-top: 0px; text-indent: -20px; "><a style="color: #545454; font-family: 'Cochin', 'Times New Roman', 'serif'; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: 0; line-height: 20px; opacity: 1.00; text-decoration: none; text-transform: none; " class="Bullet" href="http://www.rejseplanen.dk/bin/query.exe/en?" title="http://www.rejseplanen.dk/bin/query.exe/en?">1.</a><span style="width: 8px; " class="InlineBlock"></span><span style="line-height: 20px; ">Take the train directly to Middelfart station. Estimated traveltime:  2h:16m. Check </span><a href="http://www.rejseplanen.dk/bin/query.exe/en?" title="http://www.rejseplanen.dk/bin/query.exe/en?" style="line-height: 20px; opacity: 1.00; ">www.dsb.dk</a><span style="line-height: 20px; "> for your itinerary. </span></div>
-                  </li>
-                  <li style="line-height: 20px; margin-left: 20px; padding-left: 0px; text-indent: -20px; " value="2">
-                    <div class="paragraph Body_Medium" style="line-height: 20px; margin-bottom: 0px; margin-top: 0px; text-indent: -20px; "><span style="color: #545454; font-family: 'Cochin', 'Times New Roman', 'serif'; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: 0; line-height: 20px; opacity: 1.00; text-decoration: none; text-transform: none; " class="Bullet">2.</span><span style="width: 8px; " class="InlineBlock"></span><span style="line-height: 20px; ">Take a cap from Middelfart station to Middelfart FerieCenter. Estimated traveltime: 5-10 minutes.</span></div>
-                  </li>
-                  <li style="line-height: 20px; margin-left: 20px; padding-left: 0px; text-indent: -20px; " value="3">
-                    <div class="paragraph Body_Medium" style="line-height: 20px; margin-bottom: 0px; margin-top: 0px; text-indent: -20px; "><span style="color: #545454; font-family: 'Cochin', 'Times New Roman', 'serif'; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: 0; line-height: 20px; opacity: 1.00; text-decoration: none; text-transform: none; " class="Bullet">3.</span><span style="width: 8px; " class="InlineBlock"></span><span style="line-height: 20px; ">You’re there!</span></div>
-                  </li>
-                </ol>
-                <div class="paragraph Body_Medium" style="line-height: 20px; text-decoration: none;"> </div>
-                <div class="paragraph Body_Medium" style="line-height: 20px; ">Alternatively, you could consider flying into Hamburg, Germany or Billund, Denmark.</div>
-                <div class="paragraph Body_Medium" style="line-height: 20px; padding-bottom: 0pt; text-decoration: none;"> </div>
-              </div>
-            </div>
-          </div>
-
-<div id="map" style="width: 600px; height: 500px; position: absolute; top: 250px; left: 54px"></div>
-
-          <div style="height: 650px; line-height: 650px; " class="tinyText"> </div>
-        </div>
-        <div style="height: 160px; margin-left: 0px; position: relative; width: 700px; z-index: 15; " id="footer_layer">
-          <div style="height: 0px; line-height: 0px; " class="tinyText"> </div>
-        </div>
-      </div>
-    </div>
-  </body>
-</html>
-
-

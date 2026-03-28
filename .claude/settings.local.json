@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.\\(html|htaccess|config|json|yml|yaml|sh|py\\)$\")"
+    ]
+  }
+}

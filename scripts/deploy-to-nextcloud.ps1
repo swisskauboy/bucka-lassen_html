@@ -8,42 +8,19 @@ $Source = Split-Path -Parent $PSScriptRoot
 
 $ExcludeDirs = @(
   '.git',
-  '.github',
-  '.vscode',
-  '.idea',
-  'node_modules',
-  '_temp',
-  'drafts',
-  'wip',
-  'archive',
-  '_archive',
   '.claude',
-  '.codex'
+  '_*'
 )
 
-$ExcludeRootDirs = @(
-  'scripts'
-)
+$ExcludeRootDirs = @()
 
-$ExcludeFiles = @(
-  '.gitignore',
-  '.gitattributes',
-  '.DS_Store',
-  'Thumbs.db',
-  'README.md',
-  '*.bak',
-  '*.tmp',
-  '*.ps1',
-  'deploy.ps1'
-)
+$ExcludeFiles = @()
 
 if (-not (Test-Path -LiteralPath $Destination)) {
   New-Item -ItemType Directory -Path $Destination | Out-Null
 }
 
-$xd = @()
-$xd += $ExcludeDirs
-$xd += $ExcludeRootDirs | ForEach-Object { Join-Path $Source $_ }
+$xd = $ExcludeDirs
 $xf = $ExcludeFiles
 
 $robocopyArgs = @(
@@ -66,26 +43,11 @@ $code = $LASTEXITCODE
 # Report excluded directories that exist in the destination (not deleted by /XD)
 if (Test-Path -LiteralPath $Destination) {
   $excludedDirMatches = Get-ChildItem -LiteralPath $Destination -Directory -Recurse -Force -ErrorAction SilentlyContinue |
-    Where-Object { $ExcludeDirs -contains $_.Name }
+    Where-Object { $name = $_.Name; $ExcludeDirs | Where-Object { $name -like $_ } }
 
   if ($excludedDirMatches) {
     Write-Warning "Excluded directories exist in destination (review/remove if desired):"
     $excludedDirMatches | Select-Object -ExpandProperty FullName | ForEach-Object { Write-Warning "  $_" }
-  }
-
-  $excludedRootDirs = $ExcludeRootDirs | ForEach-Object { Join-Path $Destination $_ } | Where-Object { Test-Path -LiteralPath $_ }
-  if ($excludedRootDirs) {
-    Write-Warning "Excluded root directories exist in destination (review/remove if desired):"
-    $excludedRootDirs | ForEach-Object { Write-Warning "  $_" }
-  }
-
-  # Report excluded files that exist in the destination (not deleted by /XF)
-  $excludedFileMatches = Get-ChildItem -LiteralPath $Destination -File -Recurse -Force -ErrorAction SilentlyContinue |
-    Where-Object { $name = $_.Name; $ExcludeFiles | Where-Object { $name -like $_ } }
-
-  if ($excludedFileMatches) {
-    Write-Warning "Excluded files exist in destination (review/remove if desired):"
-    $excludedFileMatches | Select-Object -ExpandProperty FullName | ForEach-Object { Write-Warning "  $_" }
   }
 }
 
