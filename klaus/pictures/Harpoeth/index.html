@@ -1,26 +1,70 @@
-<html>
-<head>
-<title>050711 Harpoeths in Hedingen</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" href="style.css" type="text/css">
-</head>
-<body bgcolor="#FFFFFF" text="#000000">
-<span class="textbg">050711 Harpoeths in Hedingen (10 images)</span><br>
-<span class="textsm"></span>
-<p class="desc"><p><span class="textreg">Click a picture to see a larger view.</span><br>
-<hr size="1">
-<a href="target0.html"><img align="center" src="thumbnails/p1100832.jpg" width="122" height="73" title="Gad vide om det her virker nu ..." border="0"></a>
-<a href="target1.html"><img align="center" src="thumbnails/p1100834.jpg" width="94" height="122" title="Traed ind i mit kontor" border="0"></a>
-<a href="target2.html"><img align="center" src="thumbnails/p1100837.jpg" width="94" height="122" title="Jane, Claus og Linda" border="0"></a>
-<a href="target3.html"><img align="center" src="thumbnails/p1100838.jpg" width="94" height="122" title="Gad vide om nogen overhovedet ville opdage det nogensinde, hvis Claus ikke kom hjem mere." border="0"></a>
-<a href="target4.html"><img align="center" src="thumbnails/p1100839.jpg" width="122" height="94" title="Mia" border="0"></a>
-<a href="target5.html"><img align="center" src="thumbnails/p1100840.jpg" width="122" height="94" title="Morten" border="0"></a>
-<a href="target6.html"><img align="center" src="thumbnails/p1100841.jpg" width="122" height="94" title="Jane, Jane, Mia og Morten" border="0"></a>
-<a href="target7.html"><img align="center" src="thumbnails/p1100847.jpg" width="122" height="94" title="Hernede er den, Dirk" border="0"></a>
-<a href="target8.html"><img align="center" src="thumbnails/p1100849.jpg" width="122" height="94" title="Ja, naar man har vaeret paa ferie glider bukserne gerne ned bagefter" border="0"></a>
-<a href="target9.html"><img align="center" src="thumbnails/p1100855.jpg" width="122" height="94" title="Hele den pukkelryggede" border="0"></a>
-<map name="Map">
-  <area shape="rect" coords="95,1,129,44" href="frameset.htm">
-</map>
-</body>
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Harpoeths in Hedingen</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 2rem 1rem; background: #d6d0c4; font-family: Georgia, serif; color: #222; }
+      .page { max-width: 860px; margin: 0 auto; background: rgba(255,255,255,0.88); border-radius: 6px; padding: 2.5rem 3rem; box-shadow: 0 2px 12px rgba(0,0,0,0.18); }
+      h1 { font-size: 1.8rem; font-weight: normal; margin: 0 0 0.3rem; border-bottom: 1px solid #ccc; padding-bottom: 0.8rem; }
+      .subtitle { color: #888; font-size: 0.9rem; margin: 0.4rem 0 1.5rem; }
+      .photo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+      .photo-grid img { width: 100%; height: 130px; object-fit: cover; border-radius: 3px; display: block; cursor: pointer; transition: opacity 0.15s; }
+      .photo-grid img:hover { opacity: 0.85; }
+      #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 1000; align-items: center; justify-content: center; }
+      #lightbox.open { display: flex; }
+      #lightbox img { max-width: 92vw; max-height: 92vh; border-radius: 4px; box-shadow: 0 4px 32px rgba(0,0,0,0.6); }
+      #lightbox-close { position: absolute; top: 1rem; right: 1.4rem; color: #fff; font-size: 2.2rem; line-height: 1; cursor: pointer; user-select: none; opacity: 0.8; }
+      #lightbox-close:hover { opacity: 1; }
+      #lightbox-prev, #lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 2.5rem; cursor: pointer; user-select: none; padding: 0.5rem 1rem; opacity: 0.7; }
+      #lightbox-prev:hover, #lightbox-next:hover { opacity: 1; }
+      #lightbox-prev { left: 0.5rem; } #lightbox-next { right: 0.5rem; }
+      #lightbox-caption { position: absolute; bottom: 1.2rem; left: 50%; transform: translateX(-50%); color: #ccc; font-size: 1.3rem; text-align: center; max-width: 80vw; }
+      @media (max-width: 600px) { .page { padding: 1.5rem 1.2rem; } .photo-grid { grid-template-columns: repeat(3, 1fr); } .photo-grid img { height: 100px; } }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <h1>Harpoeths in Hedingen</h1>
+      <p class="subtitle">Juli 2005</p>
+      <div class="photo-grid">
+        <img src="images/p1100832.jpg" data-caption="Gad vide om det her virker nu ..." alt="">
+        <img src="images/p1100834.jpg" data-caption="Træd ind i mit kontor" alt="">
+        <img src="images/p1100837.jpg" data-caption="Jane, Claus og Linda" alt="">
+        <img src="images/p1100838.jpg" data-caption="Gad vide om nogen overhovedet ville opdage det nogensinde, hvis Claus ikke kom hjem mere." alt="">
+        <img src="images/p1100839.jpg" data-caption="Mia" alt="">
+        <img src="images/p1100840.jpg" data-caption="Morten" alt="">
+        <img src="images/p1100841.jpg" data-caption="Jane, Jane, Mia og Morten" alt="">
+        <img src="images/p1100847.jpg" data-caption="Hernede er den, Dirk" alt="">
+        <img src="images/p1100849.jpg" data-caption="Ja, når man har været på ferie glider bukserne gerne ned bagefter" alt="">
+        <img src="images/p1100855.jpg" data-caption="Hele den pukkelryggede" alt="">
+      </div>
+    </div>
+    <div id="lightbox">
+      <span id="lightbox-close">&times;</span>
+      <span id="lightbox-prev">&#8249;</span>
+      <img id="lightbox-img" src="" alt="">
+      <span id="lightbox-next">&#8250;</span>
+      <div id="lightbox-caption"></div>
+    </div>
+    <script>
+      const images = Array.from(document.querySelectorAll('.photo-grid img'));
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
+      const lbCaption = document.getElementById('lightbox-caption');
+      let current = 0;
+      function caption(i) { const c = images[i].dataset.caption; return c ? c + '  ·  ' + (i+1) + '/' + images.length : (i+1) + ' / ' + images.length; }
+      function open(i) { current = i; lbImg.src = images[i].src; lbCaption.textContent = caption(i); lightbox.classList.add('open'); }
+      function close() { lightbox.classList.remove('open'); lbImg.src = ''; }
+      function navigate(d) { current = (current+d+images.length)%images.length; lbImg.src = images[current].src; lbCaption.textContent = caption(current); }
+      images.forEach((img,i) => img.addEventListener('click', () => open(i)));
+      document.getElementById('lightbox-close').addEventListener('click', close);
+      document.getElementById('lightbox-prev').addEventListener('click', () => navigate(-1));
+      document.getElementById('lightbox-next').addEventListener('click', () => navigate(1));
+      lightbox.addEventListener('click', e => { if (e.target === lightbox) close(); });
+      document.addEventListener('keydown', e => { if (!lightbox.classList.contains('open')) return; if (e.key==='Escape') close(); if (e.key==='ArrowLeft') navigate(-1); if (e.key==='ArrowRight') navigate(1); });
+    </script>
+  </body>
 </html>

@@ -1,25 +1,68 @@
-<HTML>
-<HEAD><TITLE>Bornholm 17. februar 2003</TITLE></HEAD>
-<BODY bgcolor="#000000" text="#99ccff" link="#999999" vlink="#666666" alink="#33ff99">
-<TABLE>
-<TR><TD ALIGN=CENTER><FONT face="Verdana, Arial, Helvetica, Sans-Serif" size="+1"><B>Bornholm 17. februar 2003</B></FONT></TD></TR>
-<P>
-<TR><TD ALIGN=CENTER><TABLE>
-<TR>
-<TD ALIGN=CENTER VALIGN=BOTTOM><FONT face="Verdana, Arial, Helvetica, Sans-Serif" size="-2"><A HREF="01 Nylars rundkirke.jpg"><IMG SRC="TN_01 Nylars rundkirke.JPG" ALT="01 Nylars rundkirke.jpg"><BR>01 Nylars rundkirke.jpg</A></FONT></TD>
-<TD ALIGN=CENTER VALIGN=BOTTOM><FONT face="Verdana, Arial, Helvetica, Sans-Serif" size="-2"><A HREF="03 Nylars rundkirke.jpg"><IMG SRC="TN_03 Nylars rundkirke.JPG" ALT="03 Nylars rundkirke.jpg"><BR>03 Nylars rundkirke.jpg</A></FONT></TD>
-<TD ALIGN=CENTER VALIGN=BOTTOM><FONT face="Verdana, Arial, Helvetica, Sans-Serif" size="-2"><A HREF="04 Nylars rundkirke.jpg"><IMG SRC="TN_04 Nylars rundkirke.JPG" ALT="04 Nylars rundkirke.jpg"><BR>04 Nylars rundkirke.jpg</A></FONT></TD>
-</TR>
-<TR>
-<TD ALIGN=CENTER VALIGN=BOTTOM><FONT face="Verdana, Arial, Helvetica, Sans-Serif" size="-2"><A HREF="05 Nylars rundkirke.jpg"><IMG SRC="TN_05 Nylars rundkirke.JPG" ALT="05 Nylars rundkirke.jpg"><BR>05 Nylars rundkirke.jpg</A></FONT></TD>
-<TD ALIGN=CENTER VALIGN=BOTTOM><FONT face="Verdana, Arial, Helvetica, Sans-Serif" size="-2"><A HREF="06 Bjoerk.jpg"><IMG SRC="TN_06 Bjoerk.JPG" ALT="06 Bjoerk.jpg"><BR>06 Bjoerk.jpg</A></FONT></TD>
-<TD ALIGN=CENTER VALIGN=BOTTOM><FONT face="Verdana, Arial, Helvetica, Sans-Serif" size="-2"><A HREF="07 Bjoerk og Jeannet.jpg"><IMG SRC="TN_07 Bjoerk og Jeannet.JPG" ALT="07 Bjoerk og Jeannet.jpg"><BR>07 Bjoerk og Jeannet.jpg</A></FONT></TD>
-</TR>
-<TR>
-<TD ALIGN=CENTER VALIGN=BOTTOM><FONT face="Verdana, Arial, Helvetica, Sans-Serif" size="-2"><A HREF="08 Bjoerk og Jeannet.jpg"><IMG SRC="TN_08 Bjoerk og Jeannet.JPG" ALT="08 Bjoerk og Jeannet.jpg"><BR>08 Bjoerk og Jeannet.jpg</A></FONT></TD>
-</TR>
-</TABLE></TD></TR>
-<P><TR><TD ALIGN=CENTER><TR><TD ALIGN=CENTER></TD></TR>
-</TABLE>
-</BODY>
-</HTML>
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bornholm — 17. februar 2003</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 2rem 1rem; background: #d6d0c4; font-family: Georgia, serif; color: #222; }
+      .page { max-width: 860px; margin: 0 auto; background: rgba(255,255,255,0.88); border-radius: 6px; padding: 2.5rem 3rem; box-shadow: 0 2px 12px rgba(0,0,0,0.18); }
+      h1 { font-size: 1.8rem; font-weight: normal; margin: 0 0 0.3rem; border-bottom: 1px solid #ccc; padding-bottom: 0.8rem; }
+      .subtitle { color: #888; font-size: 0.9rem; margin: 0.4rem 0 1.5rem; }
+      .subtitle a { color: #7a3b00; }
+      .photo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+      .photo-grid img { width: 100%; height: 130px; object-fit: cover; border-radius: 3px; display: block; cursor: pointer; transition: opacity 0.15s; }
+      .photo-grid img:hover { opacity: 0.85; }
+      #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 1000; align-items: center; justify-content: center; }
+      #lightbox.open { display: flex; }
+      #lightbox img { max-width: 92vw; max-height: 92vh; border-radius: 4px; box-shadow: 0 4px 32px rgba(0,0,0,0.6); }
+      #lightbox-close { position: absolute; top: 1rem; right: 1.4rem; color: #fff; font-size: 2.2rem; line-height: 1; cursor: pointer; user-select: none; opacity: 0.8; }
+      #lightbox-close:hover { opacity: 1; }
+      #lightbox-prev, #lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 2.5rem; cursor: pointer; user-select: none; padding: 0.5rem 1rem; opacity: 0.7; }
+      #lightbox-prev:hover, #lightbox-next:hover { opacity: 1; }
+      #lightbox-prev { left: 0.5rem; } #lightbox-next { right: 0.5rem; }
+      #lightbox-caption { position: absolute; bottom: 1.2rem; left: 50%; transform: translateX(-50%); color: #ccc; font-size: 1.3rem; text-align: center; max-width: 80vw; }
+      @media (max-width: 600px) { .page { padding: 1.5rem 1.2rem; } .photo-grid { grid-template-columns: repeat(3, 1fr); } .photo-grid img { height: 100px; } }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <h1>Bornholm — 17. februar 2003</h1>
+      <p class="subtitle"><a href="../index.html">&larr; Bornholm 2003</a></p>
+      <div class="photo-grid">
+        <img src="01 Nylars rundkirke.jpg" alt="Nylars rundkirke">
+        <img src="03 Nylars rundkirke.jpg" alt="Nylars rundkirke">
+        <img src="04 Nylars rundkirke.jpg" alt="Nylars rundkirke">
+        <img src="05 Nylars rundkirke.jpg" alt="Nylars rundkirke">
+        <img src="06 Bjoerk.jpg" alt="Bjørk">
+        <img src="07 Bjoerk og Jeannet.jpg" alt="Bjørk og Jeannet">
+        <img src="08 Bjoerk og Jeannet.jpg" alt="Bjørk og Jeannet">
+      </div>
+    </div>
+    <div id="lightbox">
+      <span id="lightbox-close">&times;</span>
+      <span id="lightbox-prev">&#8249;</span>
+      <img id="lightbox-img" src="" alt="">
+      <span id="lightbox-next">&#8250;</span>
+      <div id="lightbox-caption"></div>
+    </div>
+    <script>
+      const images = Array.from(document.querySelectorAll('.photo-grid img'));
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
+      const lbCaption = document.getElementById('lightbox-caption');
+      let current = 0;
+      function caption(i) { const a = images[i].alt; return a ? a + '  ·  ' + (i+1) + '/' + images.length : (i+1) + ' / ' + images.length; }
+      function open(i) { current = i; lbImg.src = images[i].src; lbImg.alt = images[i].alt; lbCaption.textContent = caption(i); lightbox.classList.add('open'); }
+      function close() { lightbox.classList.remove('open'); lbImg.src = ''; }
+      function navigate(d) { current = (current+d+images.length)%images.length; lbImg.src = images[current].src; lbCaption.textContent = caption(current); }
+      images.forEach((img,i) => img.addEventListener('click', () => open(i)));
+      document.getElementById('lightbox-close').addEventListener('click', close);
+      document.getElementById('lightbox-prev').addEventListener('click', () => navigate(-1));
+      document.getElementById('lightbox-next').addEventListener('click', () => navigate(1));
+      lightbox.addEventListener('click', e => { if (e.target === lightbox) close(); });
+      document.addEventListener('keydown', e => { if (!lightbox.classList.contains('open')) return; if (e.key==='Escape') close(); if (e.key==='ArrowLeft') navigate(-1); if (e.key==='ArrowRight') navigate(1); });
+    </script>
+  </body>
+</html>

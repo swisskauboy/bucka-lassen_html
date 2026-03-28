@@ -20,7 +20,12 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code} %{redirect_url}\" -I -L --max-redirs 1 --connect-timeout 15 --max-time 20 \"https://www.youtube.com/watch?v=PJkXJRdj65k\")",
       "Bash(curl -s -o /dev/null -w \"%{http_code} %{redirect_url}\" -I -L --max-redirs 1 --connect-timeout 15 --max-time 20 \"https://www.google.com/maps/d/u/2/embed?mid=1Dv-m5cfo75UwSguRhWd5215Osfg\")",
       "Bash(curl -s -o /dev/null -w \"%{http_code} %{redirect_url}\" -I -L --max-redirs 1 --connect-timeout 15 --max-time 20 \"https://www.google.com/maps/d/u/0/embed?mid=zOrYjnBqnfgo.kC70DF4-ofC4\")",
-      "Bash(curl -s -o /dev/null -w \"%{http_code} %{redirect_url}\" -L --max-redirs 1 --connect-timeout 15 --max-time 20 -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://www.roundshot.com/en/livecam-references.html/102\")"
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{redirect_url}\" -L --max-redirs 1 --connect-timeout 15 --max-time 20 -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://www.roundshot.com/en/livecam-references.html/102\")",
+      "Bash(done)",
+      "Bash(grep -v \"\\\\.html$\")",
+      "Bash(cp -r \"d:/repos/bucka-lassen_html/Klaus/Reppischgartenfest2009\" \"d:/repos/bucka-lassen_html/Klaus/pictures/Reppischgartenfest2009\")",
+      "Bash(cp -r \"d:/repos/bucka-lassen_html/Klaus/Sidlerhof2009-02\" \"d:/repos/bucka-lassen_html/Klaus/pictures/Sidlerhof2009-02\")",
+      "Bash(xargs -I{} basename {})"
     ]
   }
 }
