@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"d:/repos/bucka-lassen_html/nicepics/slides/\"*.jpg)",
+      "Bash(cp \"better_pictures/01-singapore sky scrapers.JPG\" \"pictures/Singapore_Skyscrapers.jpg\")",
+      "Bash(cp \"better_pictures/02-Cave roof.JPG\" \"pictures/Cave_Roof.jpg\")",
+      "Bash(cp \"better_pictures/03_View_from_Natural_Bridge.jpg\" \"pictures/View_from_Natural_Bridge.jpg\")",
+      "Bash(cp \"better_pictures/04_Leaving_the_road_behind_us.JPG\" \"pictures/Leaving_the_Road_Behind.jpg\")",
+      "Bash(cp \"better_pictures/05_Shotover.JPG\" \"pictures/Shotover.jpg\")",
+      "Bash(cp \"better_pictures/06-Shell beach.JPG\" \"pictures/Shell_Beach.jpg\")",
+      "Bash(cp \"better_pictures/22-listening.JPG\" \"pictures/Listening.jpg\")",
+      "Bash(cp \"better_pictures/24-observatories.JPG\" \"pictures/Observatories.jpg\")",
+      "Bash(cp \"better_pictures/25-typical hawaii.JPG\" \"pictures/Typical_Hawaii.jpg\")",
+      "Bash(cp \"better_pictures/30-blue yellow green.JPG\" \"pictures/Blue_Yellow_Green.jpg\")",
+      "Bash(sort -k5 -n)",
+      "Bash(mv Singapore_Skyscrapers.jpg 01-Singapore_Skyscrapers.jpg)",
+      "Bash(mv Cave_Roof.jpg 02-Cave_Roof.jpg)",
+      "Bash(mv View_from_Natural_Bridge.jpg 03-View_from_Natural_Bridge.jpg)",
+      "Bash(mv Leaving_the_Road_Behind.jpg 04-Leaving_the_Road_Behind.jpg)",
+      "Bash(mv Shotover.jpg 05-Shotover.jpg)"
+    ],
+    "additionalDirectories": [
+      "d:\\repos\\bucka-lassen_html\\nicepics\\slides"
+    ]
+  }
+}
