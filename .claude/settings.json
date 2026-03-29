@@ -29,7 +29,14 @@
       "Bash(cp -r touring_new/* touring/)",
       "Bash(cp -r touring_original/Bros touring/Bros)",
       "Bash(cp -r touring_original/maps touring/maps)",
-      "Bash(ls \"d:/repos/bucka-lassen_html/klaus/touring/\"*.html)"
+      "Bash(ls \"d:/repos/bucka-lassen_html/klaus/touring/\"*.html)",
+      "Bash(find . -type f -exec ls -lh {})",
+      "Read(//d/repos/bucka-lassen_html/**)",
+      "Bash(sort -k2)",
+      "Bash(grep -o 'href=\"\"\"\"[^\"\"\"\"]*\"\"\"\"' /d/repos/bucka-lassen_html/klaus/touring/*.html)",
+      "Bash(grep -E \"<img[^>]*src=[''''\"\"]\\([^''''\"\"]+\\)[''''\"\"]\" /d/repos/bucka-lassen_html/klaus/touring/*.html)",
+      "Bash(grep -rh 'src=' *.html)",
+      "Bash(grep -rh 'src=' Bros/*.html)"
     ],
     "additionalDirectories": [
       "d:\\repos\\bucka-lassen_html\\nicepics\\slides"
