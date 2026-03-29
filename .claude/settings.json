@@ -28,7 +28,8 @@
       "Bash(rm -rf touring/*)",
       "Bash(cp -r touring_new/* touring/)",
       "Bash(cp -r touring_original/Bros touring/Bros)",
-      "Bash(cp -r touring_original/maps touring/maps)"
+      "Bash(cp -r touring_original/maps touring/maps)",
+      "Bash(ls \"d:/repos/bucka-lassen_html/klaus/touring/\"*.html)"
     ],
     "additionalDirectories": [
       "d:\\repos\\bucka-lassen_html\\nicepics\\slides"
