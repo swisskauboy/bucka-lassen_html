@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Castle Meetup at Burg Ehrenfels</title>
+  <script src="https://cdn.logwork.com/widget/countdown.js"></script>
   <style>
     :root {
       --stone-1: #f2ece2;
@@ -200,6 +201,11 @@
       font-weight: 700;
     }
 
+    .countdown a.countdown-timer {
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+    }
+
     main {
       max-width: 1000px;
       margin: -30px auto 60px;
@@ -263,6 +269,26 @@
     .booking-list {
       margin: 0;
       padding-left: 18px;
+    }
+
+    .signup-btn {
+      display: block;
+      width: fit-content;
+      margin: 12px auto 0;
+      padding: 12px 28px;
+      background: var(--emerald);
+      color: #fff;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .signup-btn:hover {
+      background: #1f4a38;
+      transform: translateY(-1px);
+      text-decoration: none;
     }
     .gallery {
       margin-bottom: 32px;
@@ -423,7 +449,9 @@
         <div class="info-grid">
           <div class="card">
             <strong>Countdown</strong>
-            <div class="countdown"><span id="day-counter">...</span> days to go</div>
+            <div class="countdown">
+              <a href="https://logwork.com/countdown-timer" class="countdown-timer" data-style="flip3" data-timezone="Europe/Zurich" data-date="2028-07-30 14:00">Countdown Timer</a>
+            </div>
           </div>
           <div class="card">
             <strong>Location</strong>
@@ -468,7 +496,7 @@
         </div><div class="lang active" data-lang="en">
           <div class="section">
             <h2>General Information</h2>
-            <p>We will use this page for general information about the castle meetup. Details are continuously added. If anybody is missing something or has suggestions (for excursions and other pastimes) – especially if you volunteer to take responsibility for organizing something – just put it in the calendar.</p>
+            <p>We will use this page for general information about the castle meetups. Details are continuously added. If anybody is missing something or has suggestions (for excursions and other pastimes) – especially if you volunteer to take responsibility for organizing something – just let Klaus know.</p>
             <p class="note">Note: I tried to swap 2028 with 2027, but that was not possible because the castle is already rented out in 2027.</p>
           </div>
 
@@ -623,11 +651,9 @@
             <p>If you book a spot in the castle, do not pay just yet. You will receive an email with paying instructions later. Should you need to cancel after payment, and we can find a substitute (which is quite likely), you will receive a full refund.</p>
             <p>And yes, I know, everybody wants the 2- or 3-bed rooms, but unfortunately, that is not possible. So only ask for one if you <em>really</em> have a good reason.</p>
 
-            <h3>No Occasion</h3>
-            <p>Several people have asked if this is a birthday celebration. It is not. While I rented the castle for my birthday in 2019, this meetup, just like in 2022 and 2025, is simply a gathering of friends from around the world. No need to worry about presents or lugging items across the seas. That said, if you need an excuse to party, I am sure we can come up with something together.</p>
-
             <h3>Interested?</h3>
-            <p>Would you like to stay informed about this Castle Meetup? Sign up <a href="https://forms.gle/KinS3XSfZCH6cBnx7">here</a> then.</p>
+            <p>Would you like to stay informed about Castle Meetup 2028? This is not a booking — just a way to receive updates. I will reach out individually later about reserving your spot.</p>
+            <a href="https://forms.gle/KinS3XSfZCH6cBnx7" class="signup-btn" target="_blank">Keep me informed</a>
           </div>
         </div>
 
@@ -789,11 +815,9 @@
             <p>Wenn du einen Platz in der Burg buchst, bezahle bitte noch nicht. Du erhältst später eine E-Mail mit den Zahlungsinformationen. Falls du nach der Zahlung absagen musst und wir einen Ersatz finden (was sehr wahrscheinlich ist), bekommst du selbstverständlich eine volle Rückerstattung.</p>
             <p>Und ja, ich weiss, alle wollen die 2- oder 3-Bett-Zimmer, aber das ist leider nicht möglich. Frag also nur danach, wenn du <em>wirklich</em> einen guten Grund hast.</p>
 
-            <h3>Kein Anlass</h3>
-            <p>Mehrere Personen haben gefragt, ob es eine Geburtstagsparty ist. Das ist es nicht. Zwar habe ich die Burg 2019 zu meinem Geburtstag gemietet, aber dieses Treffen ist – wie 2022 und 2025 – einfach ein Zusammenkommen von Freundinnen und Freunden aus aller Welt. Keine Geschenke nötig und nichts über die Meere schleppen. Wenn du trotzdem einen Grund zum Feiern brauchst, finden wir einen.</p>
-
             <h3>Interessiert?</h3>
-            <p>Möchtest du über dieses Castle Meetup informiert bleiben? Dann melde dich <a href="https://forms.gle/KinS3XSfZCH6cBnx7">hier</a> an.</p>
+            <p>Möchtest du über das Castle Meetup 2028 auf dem Laufenden bleiben? Das ist noch keine Buchung — nur eine Möglichkeit, Updates zu erhalten. Ich werde mich später individuell wegen der Reservierung melden.</p>
+            <a href="https://forms.gle/KinS3XSfZCH6cBnx7" class="signup-btn" target="_blank">Haltet mich auf dem Laufenden</a>
           </div>
         </div>
       </div>
@@ -801,18 +825,6 @@
   </div>
 
   <script>
-    const startDate = new Date("2028-07-30T00:00:00");
-    const today = new Date();
-    startDate.setHours(0, 0, 0, 0);
-    today.setHours(0, 0, 0, 0);
-    const diffInTime = startDate - today;
-    const diffInDays = Math.max(0, Math.ceil(diffInTime / (1000 * 60 * 60 * 24)));
-    const counter = document.getElementById("day-counter");
-    if (counter) {
-      counter.textContent = diffInDays;
-    }
-
-    
     const galleryImages = [
       "P1100037.jpg",
       "190804-008.jpg",
